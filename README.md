@@ -1,4 +1,4 @@
-# myChat-PC-
+# myChatDesktop
 A socket based chatting application for PCs
 
 # Environment setup-
@@ -11,4 +11,5 @@ A socket based chatting application for PCs
 7. From the IDE, import all the jars into the project build path and build the project.
 8. If you encounter any error (like pipeline not found), then use '--module-path /path/to/javafx/lib --add-module javafx.base,javafx.controls,javafx.fxml' to the vm options of the Main.java file from 'Run Configuration' settings.
 9. That should get you set up. In case you still face some error, contact me or visit www.stackoverflow.com
-10. Happy Coding!
+10. Configure the .gitignore file to include all the IDE specific setting so that they don't get uploaded to the repo when you push.
+11. Happy Coding!
