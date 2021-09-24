@@ -16,7 +16,7 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Button fx:id="btnLogin" layoutX="74.0" layoutY="267.0" mnemonicParsing="false" onAction="#onLoginClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefHeight="43.0" prefWidth="230.0" style="-fx-background-color: rgb(19, 155, 240); -fx-font-weight: 700;" text="LOG IN" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button fx:id="btnLogin" layoutX="74.0" layoutY="267.0" mnemonicParsing="false" onAction="#onLoginClicked" prefHeight="40.0" prefWidth="230.0" style="-fx-background-color: rgb(19, 155, 240); -fx-font-weight: 500;" text="LOG IN" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>

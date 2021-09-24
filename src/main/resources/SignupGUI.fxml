@@ -37,7 +37,7 @@
       </TextField>
       <Button fx:id="btnRegister" layoutX="403.0" layoutY="474.0" mnemonicParsing="false" onAction="#onSignupClicked" prefHeight="42.0" prefWidth="154.0" style="-fx-background-color: rgb(19, 155, 240);" text="REGISTER" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font size="15.0" />
          </font>
       </Button>
       <Label fx:id="lblErrFirstName" layoutX="77.0" layoutY="201.0" prefHeight="16.0" prefWidth="228.0" textFill="RED" />

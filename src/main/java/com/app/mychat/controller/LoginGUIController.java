@@ -1,8 +1,8 @@
 package com.app.mychat.controller;
 
 import java.util.HashMap;
-import java.util.regex.Pattern;
 
+import com.app.mychat.utils.classes.Animations;
 import com.app.mychat.utils.classes.CredentialNetwork;
 import com.app.mychat.utils.classes.KeyValues;
 import com.app.mychat.utils.interfaces.CredentialNetworkListener;
@@ -11,21 +11,27 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import static com.app.mychat.utils.classes.Hash.hashUp;
+import static com.app.mychat.utils.classes.Regex.*;
 
 public class LoginGUIController implements CredentialNetworkListener {
 
-    private CredentialNetwork credentialNetwork;
-    private static final String patternAlias = "^[a-zA-Z0-9]{5,20}$";
-    private static final String patternPassword = "^[a-zA-Z0-9!@#$]{8,20}$";
+    private final CredentialNetwork credentialNetwork;
 
     @FXML private PasswordField txtPassword;
     @FXML private TextField txtAlias;
     @FXML private Button btnLogin;
     @FXML private Label lblErrAlias;
     @FXML private Label lblErrPassword;
+    private final Animations animations;
 
     public LoginGUIController() {
         credentialNetwork = new CredentialNetwork(this);
+        animations = new Animations();
+    }
+
+    @FXML
+    public void initialize(){
+        animations.setButtonAnimation(btnLogin);
     }
 
     @FXML
@@ -33,11 +39,11 @@ public class LoginGUIController implements CredentialNetworkListener {
         String username = txtAlias.getText().trim();
         String password = txtPassword.getText().trim();
         boolean flag = true;
-        if(!isAliasAMatch(username)){
+        if(isAliasAMatch(username)){
             flag = false;
             lblErrAlias.setText("Invalid alias!");
         }
-        if(!isPasswordAMatch(password)){
+        if(isPasswordAMatch(password)){
             flag = false;
             lblErrPassword.setText("Invalid password!");
         }
@@ -52,32 +58,6 @@ public class LoginGUIController implements CredentialNetworkListener {
             message.put(KeyValues.KEY_PASSWORD, password);
             credentialNetwork.attemptLogin(message);
         }
-    }
-
-    //-----------BUTTON ANIMATIONS----------------
-
-    @FXML
-    public void onMouseEntered(){
-
-    }
-
-    @FXML
-    public void onMouseExited(){
-
-    }
-
-    //--------------------------------------------
-
-    private boolean isPasswordAMatch(String password) {
-        if (Pattern.matches(patternPassword, password))
-            return true;
-        return false;
-    }
-
-    private boolean isAliasAMatch(String alias) {
-        if (Pattern.matches(patternAlias, alias))
-            return true;
-        return false;
     }
 
     @Override

@@ -13,10 +13,9 @@ public class Hash {
         try {
             md = MessageDigest.getInstance("SHA256");
         }catch (NoSuchAlgorithmException e) {
-            System.out.println(e);
             System.exit(1);
         }
-        byte hash[] = md.digest(input.getBytes(StandardCharsets.UTF_8));
+        byte[] hash = md.digest(input.getBytes(StandardCharsets.UTF_8));
         BigInteger number = new BigInteger(1, hash);
         StringBuilder hex = new StringBuilder(number.toString(16));
         while(hex.length() < 32)

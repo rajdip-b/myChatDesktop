@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class CredentialNetwork {
 
-    private CredentialNetworkListener networkListener;
+    private final CredentialNetworkListener networkListener;
     //	private static final String serverIP = "3.109.181.96";
     private static final String serverIP = "127.0.0.1";
     private static final int credentialServerPort = 5000;
@@ -54,10 +54,8 @@ public class CredentialNetwork {
                     }
                 }
             }catch (IOException e){
-                System.out.println(e);
                 networkListener.onErrorWhileOperation("Server down!");
-            }catch (ClassNotFoundException e){
-                System.out.println(e);
+            }catch (ClassNotFoundException ignored){
             }
         }).start();
     }
@@ -79,10 +77,8 @@ public class CredentialNetwork {
                     }
                 }
             }catch (IOException e) {
-                System.out.println(e);
                 networkListener.onErrorWhileOperation("Server down!");
             }catch (ClassNotFoundException e) {
-                System.out.println(e);
                 // TODO: handle exception
             }
         }).start();
