@@ -11,17 +11,17 @@ public class Regex {
 
     // Regex match for first name / last name
     public static boolean isNameAMatch(String name) {
-        return !Pattern.matches(patternName, name);
+        return Pattern.matches(patternName, name);
     }
 
     //Regex match for password
     public static boolean isPasswordAMatch(String password) {
-        return !Pattern.matches(patternPassword, password);
+        return Pattern.matches(patternPassword, password);
     }
 
     //Regex match for alias
     public static boolean isAliasAMatch(String alias) {
-        return !Pattern.matches(patternAlias, alias);
+        return Pattern.matches(patternAlias, alias);
     }
 
     //Regex match for email

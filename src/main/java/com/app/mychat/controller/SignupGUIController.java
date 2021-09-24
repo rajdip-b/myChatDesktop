@@ -9,6 +9,8 @@ import com.app.mychat.utils.interfaces.CredentialNetworkListener;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import static com.app.mychat.utils.classes.Hash.hashUp;
 import static com.app.mychat.utils.classes.Regex.*;
@@ -51,11 +53,11 @@ public class SignupGUIController implements CredentialNetworkListener {
         String confirmPassword = txtConfirmPassword.getText().trim();
 
         boolean flag = true;
-        if (isNameAMatch(firstName)){
+        if (!isNameAMatch(firstName)){
             lblErrFirstName.setText("Invalid first name!");
             flag = false;
         }
-        if (isNameAMatch(lastName)) {
+        if (!isNameAMatch(lastName)) {
             lblErrLastName.setText("Invalid last name!");
             flag = false;
         }
@@ -63,11 +65,11 @@ public class SignupGUIController implements CredentialNetworkListener {
             lblErrEmail.setText("Invalid email!");
             flag = false;
         }
-        if (isPasswordAMatch(password)) {
+        if (!isPasswordAMatch(password)) {
             lblErrPassword.setText("Password must have 8 to 20 characters including a-z, A-Z, 0-9 and !@#$");
             flag = false;
         }
-        if (isAliasAMatch(alias)) {
+        if (!isAliasAMatch(alias)) {
             lblErrAlias.setText("Alias must have 5 to 20 characters in including a-z, A-Z and 0-9");
             flag = false;
         }
@@ -93,6 +95,12 @@ public class SignupGUIController implements CredentialNetworkListener {
     @FXML
     public void initialize(){
         animations.setButtonAnimation(btnRegister);
+    }
+
+    public void onKeyPressed(KeyEvent event){
+        KeyCode keyCode = event.getCode();
+        if (keyCode == KeyCode.ENTER)
+            onSignupClicked();
     }
 
     @Override

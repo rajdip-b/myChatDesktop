@@ -9,6 +9,8 @@ import com.app.mychat.utils.interfaces.CredentialNetworkListener;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import static com.app.mychat.utils.classes.Hash.hashUp;
 import static com.app.mychat.utils.classes.Regex.*;
@@ -39,11 +41,11 @@ public class LoginGUIController implements CredentialNetworkListener {
         String username = txtAlias.getText().trim();
         String password = txtPassword.getText().trim();
         boolean flag = true;
-        if(isAliasAMatch(username)){
+        if(!isAliasAMatch(username)){
             flag = false;
             lblErrAlias.setText("Invalid alias!");
         }
-        if(isPasswordAMatch(password)){
+        if(!isPasswordAMatch(password)){
             flag = false;
             lblErrPassword.setText("Invalid password!");
         }
@@ -58,6 +60,12 @@ public class LoginGUIController implements CredentialNetworkListener {
             message.put(KeyValues.KEY_PASSWORD, password);
             credentialNetwork.attemptLogin(message);
         }
+    }
+
+    public void onKeyPressed(KeyEvent event){
+        KeyCode keyCode = event.getCode();
+        if (keyCode == KeyCode.ENTER)
+            onLoginClicked();
     }
 
     @Override

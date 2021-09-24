@@ -15,22 +15,22 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="txtLastName" layoutX="317.0" layoutY="156.0" prefHeight="42.0" prefWidth="238.0" promptText="Last name">
+      <TextField fx:id="txtLastName" layoutX="317.0" layoutY="156.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="238.0" promptText="Last name">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtEmail" layoutX="77.0" layoutY="236.0" prefHeight="42.0" prefWidth="480.0" promptText="Email ">
+      <TextField fx:id="txtEmail" layoutX="77.0" layoutY="236.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="480.0" promptText="Email ">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtAlias" layoutX="77.0" layoutY="316.0" prefHeight="42.0" prefWidth="480.0" promptText="Alias">
+      <TextField fx:id="txtAlias" layoutX="77.0" layoutY="316.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="480.0" promptText="Alias">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtFirstName" layoutX="75.0" layoutY="156.0" prefHeight="42.0" prefWidth="228.0" promptText="First name">
+      <TextField fx:id="txtFirstName" layoutX="75.0" layoutY="156.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="228.0" promptText="First name">
          <font>
             <Font size="15.0" />
          </font>
@@ -45,12 +45,12 @@
       <Label fx:id="lblErrEmail" layoutX="75.0" layoutY="278.0" prefHeight="16.0" prefWidth="480.0" textFill="RED" />
       <Label fx:id="lblErrAlias" layoutX="77.0" layoutY="358.0" prefHeight="16.0" prefWidth="480.0" textFill="RED" />
       <Label fx:id="lblErrPassword" layoutX="77.0" layoutY="439.0" prefHeight="16.0" prefWidth="480.0" textFill="RED" />
-      <PasswordField fx:id="txtPassword" layoutX="75.0" layoutY="397.0" prefHeight="42.0" prefWidth="228.0" promptText="Password">
+      <PasswordField fx:id="txtPassword" layoutX="75.0" layoutY="397.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="228.0" promptText="Password">
          <font>
             <Font size="15.0" />
          </font>
       </PasswordField>
-      <PasswordField fx:id="txtConfirmPassword" layoutX="319.0" layoutY="397.0" prefHeight="42.0" prefWidth="238.0" promptText="Confirm password">
+      <PasswordField fx:id="txtConfirmPassword" layoutX="319.0" layoutY="397.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="238.0" promptText="Confirm password">
          <font>
             <Font size="15.0" />
          </font>
