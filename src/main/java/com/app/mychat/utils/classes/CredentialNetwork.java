@@ -32,7 +32,6 @@ public class CredentialNetwork {
             objectInputStream = new ObjectInputStream(socket.getInputStream());
             return true;
         } catch (IOException e){
-            System.out.println(e);
             networkListener.onConnectionUnSuccessful("Host down or device is not connected!");
             return false;
         }

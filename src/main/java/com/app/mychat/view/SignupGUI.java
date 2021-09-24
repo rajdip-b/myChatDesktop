@@ -1,24 +1,25 @@
 package com.app.mychat.view;
 
 import com.app.mychat.controller.SignupGUIController;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.util.Scanner;
 
-public class SignupGUI {
+public class SignupGUI extends Application {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter first name: ");
-        String firstName = sc.nextLine();
-        System.out.print("Enter last name: ");
-        String lastName = sc.nextLine();
-        System.out.print("Enter email: ");
-        String email = sc.next();
-        System.out.print("Enter alias: ");
-        String alias = sc.next();
-        System.out.print("Enter password: ");
-        String password = sc.next();
-        new SignupGUIController().onSignupClicked(firstName, lastName, email, password, alias);
+        launch(args);
     }
 
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/SignupGUI.fxml"));
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
+        primaryStage.show();
+    }
 }

@@ -6,6 +6,10 @@ import java.util.regex.Pattern;
 import com.app.mychat.utils.classes.CredentialNetwork;
 import com.app.mychat.utils.classes.KeyValues;
 import com.app.mychat.utils.interfaces.CredentialNetworkListener;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+
 import static com.app.mychat.utils.classes.Hash.hashUp;
 
 public class SignupGUIController implements CredentialNetworkListener {
@@ -15,6 +19,19 @@ public class SignupGUIController implements CredentialNetworkListener {
     private static final String patternPassword = "^[a-zA-Z0-9!@#$]{8,20}$";
     private static final String patternEmail = "^[a-zA-Z0-9.]{1,}[@]{1}[a-zA-Z0-9.]{5,}$";
     private static final String patternAlias = "^[a-zA-Z0-9]{5,20}$";
+
+    @FXML public TextField txtFirstName;
+    @FXML public TextField txtLastName;
+    @FXML public TextField txtEmail;
+    @FXML public TextField txtAlias;
+    @FXML public Button btnRegister;
+    @FXML public Label lblErrFirstName;
+    @FXML public Label lblErrLastName;
+    @FXML public Label lblErrEmail;
+    @FXML public Label lblErrAlias;
+    @FXML public Label lblErrPassword;
+    @FXML public PasswordField txtPassword;
+    @FXML public PasswordField txtConfirmPassword;
 
     public SignupGUIController() {
         credentialNetwork = new CredentialNetwork(this);
@@ -48,29 +65,48 @@ public class SignupGUIController implements CredentialNetworkListener {
         return false;
     }
 
-    public void onSignupClicked(String firstName, String lastName, String email, String password, String alias) {
+    @FXML
+    public void onSignupClicked() {
+        lblErrPassword.setText("");
+        lblErrAlias.setText("");
+        lblErrEmail.setText("");
+        lblErrLastName.setText("");
+        lblErrFirstName.setText("");
+        String firstName = txtFirstName.getText().trim();
+        String lastName = txtLastName.getText().trim();
+        String email = txtEmail.getText().trim();
+        String alias = txtAlias.getText().trim();
+        String password = txtPassword.getText().trim();
+        String confirmPassword = txtConfirmPassword.getText().trim();
+
         boolean flag = true;
         if (!isNameAMatch(firstName)){
-            System.out.println("Invalid first name!");
+            lblErrFirstName.setText("Invalid first name!");
             flag = false;
         }
         if (!isNameAMatch(lastName)) {
-            System.out.println("Invalid last name!");
+            lblErrLastName.setText("Invalid last name!");
             flag = false;
         }
         if (!isEmailAMatch(email)) {
-            System.out.println("Invalid email!");
+            lblErrEmail.setText("Invalid email!");
             flag = false;
         }
         if (!isPasswordAMatch(password)) {
-            System.out.println("Invalid password!");
+            lblErrPassword.setText("Password must have 8 to 20 characters including a-z, A-Z, 0-9 and !@#$");
             flag = false;
         }
         if (!isAliasAMatch(alias)) {
-            System.out.println("Invalid alias");
+            lblErrAlias.setText("Alias must have 5 to 20 characters in including a-z, A-Z and 0-9");
+            flag = false;
+        }
+        if(!password.equals(confirmPassword)){
+            lblErrPassword.setText("Password and confirm password doesn't match!");
+            System.out.println(password+" "+confirmPassword);
             flag = false;
         }
         if (flag) {
+            btnRegister.setDisable(true);
             password = hashUp(password);
             HashMap<String, Object> message = new HashMap<>();
             message.put(KeyValues.KEY_QUERY, KeyValues.QUERY_SIGNUP_REQUEST);
@@ -85,17 +121,26 @@ public class SignupGUIController implements CredentialNetworkListener {
 
     @Override
     public void onConnectionUnSuccessful(String message) {
-        System.out.println(message);
+        Platform.runLater(() ->{
+            btnRegister.setDisable(false);
+            new Alert(Alert.AlertType.ERROR, message).show();
+        });
     }
 
     @Override
     public void onErrorWhileOperation(String message) {
-        System.out.println(message);
+        Platform.runLater(() ->{
+            btnRegister.setDisable(false);
+            new Alert(Alert.AlertType.ERROR, message).show();
+        });
     }
 
     @Override
     public void onOperationSuccessful(String message) {
-        System.out.println(message);
+        Platform.runLater(() ->{
+            btnRegister.setDisable(false);
+            new Alert(Alert.AlertType.INFORMATION, message).show();
+        });
     }
 
 }

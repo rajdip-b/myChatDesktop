@@ -9,7 +9,7 @@ module com.app.mychat {
 
     opens com.app.mychat to javafx.fxml;
     exports com.app.mychat.view;
-    exports com.app.mychat.controller;
+    opens com.app.mychat.controller;
     exports com.app.mychat.utils.classes;
     exports com.app.mychat.utils.interfaces;
     exports com.app.mychat;
