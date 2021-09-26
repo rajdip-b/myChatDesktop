@@ -8,7 +8,8 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="540.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.mychat.controller.SignupGUIController">
+<AnchorPane prefHeight="540.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.app.mychat.controller.SignupGUIController">
    <children>
       <Label layoutX="75.0" layoutY="54.0" prefHeight="54.0" prefWidth="125.0" style="-fx-font-weight: 700;" text="Sign Up" textFill="#0071d9">
          <font>
