@@ -6,6 +6,7 @@ import com.app.mychat.utils.classes.Animations;
 import com.app.mychat.utils.classes.CredentialNetwork;
 import com.app.mychat.utils.classes.KeyValues;
 import com.app.mychat.utils.interfaces.CredentialNetworkListener;
+import com.app.mychat.utils.interfaces.WindowEventListener;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -18,6 +19,7 @@ import static com.app.mychat.utils.classes.Regex.*;
 public class LoginGUIController implements CredentialNetworkListener {
 
     private final CredentialNetwork credentialNetwork;
+    private static WindowEventListener windowEventListener;
 
     @FXML private PasswordField txtPassword;
     @FXML private TextField txtAlias;
@@ -29,6 +31,10 @@ public class LoginGUIController implements CredentialNetworkListener {
     public LoginGUIController() {
         credentialNetwork = new CredentialNetwork(this);
         animations = new Animations();
+    }
+
+    public static void addWindowEventListener(WindowEventListener windowEventListener){
+        LoginGUIController.windowEventListener = windowEventListener;
     }
 
     @FXML
@@ -62,6 +68,11 @@ public class LoginGUIController implements CredentialNetworkListener {
         }
     }
 
+    @FXML
+    public void onCreateAccountClicked(){
+        windowEventListener.onSignupScreenRequested();
+    }
+
     public void onKeyPressed(KeyEvent event){
         KeyCode keyCode = event.getCode();
         if (keyCode == KeyCode.ENTER)
@@ -88,7 +99,8 @@ public class LoginGUIController implements CredentialNetworkListener {
     public void onOperationSuccessful(String message) {
         Platform.runLater(() ->{
             btnLogin.setDisable(false);
-            new Alert(Alert.AlertType.INFORMATION, message).show();
+            new Alert(Alert.AlertType.INFORMATION, message).showAndWait();
+            windowEventListener.onChatScreenRequested();
         });
     }
 

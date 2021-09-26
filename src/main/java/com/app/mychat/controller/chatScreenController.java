@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class chatScreenController {
-    public void clickbutton(ActionEvent actionEvent) {
-    }
+
+
+
 }

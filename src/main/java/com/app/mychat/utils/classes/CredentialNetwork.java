@@ -17,6 +17,7 @@ public class CredentialNetwork {
     private static final int credentialServerPort = 5000;
     private ObjectOutputStream objectOutputStream;
     private ObjectInputStream objectInputStream;
+    private static SSLSocket socket;
 
     public CredentialNetwork(CredentialNetworkListener networkListener){
         System.setProperty("javax.net.ssl.trustStore", "src/main/java/myChatTrustStore.jts");
@@ -25,7 +26,6 @@ public class CredentialNetwork {
     }
 
     private boolean connectToCredentialServer(){
-        SSLSocket socket;
         try{
             socket = (SSLSocket)(SSLSocketFactory.getDefault()).createSocket(serverIP, credentialServerPort);
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -82,6 +82,13 @@ public class CredentialNetwork {
                 // TODO: handle exception
             }
         }).start();
+    }
+
+    public static void disconnect(){
+        try{
+            socket.close();
+        }catch (IOException | NullPointerException ignored){
+        }
     }
 
 }

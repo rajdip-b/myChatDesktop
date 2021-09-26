@@ -6,6 +6,7 @@ import com.app.mychat.utils.classes.Animations;
 import com.app.mychat.utils.classes.CredentialNetwork;
 import com.app.mychat.utils.classes.KeyValues;
 import com.app.mychat.utils.interfaces.CredentialNetworkListener;
+import com.app.mychat.utils.interfaces.WindowEventListener;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -18,6 +19,7 @@ import static com.app.mychat.utils.classes.Regex.*;
 public class SignupGUIController implements CredentialNetworkListener {
 
     private final CredentialNetwork credentialNetwork;
+    private static WindowEventListener windowEventListener;
 
     @FXML public TextField txtFirstName;
     @FXML public TextField txtLastName;
@@ -36,6 +38,10 @@ public class SignupGUIController implements CredentialNetworkListener {
     public SignupGUIController() {
         credentialNetwork = new CredentialNetwork(this);
         animations = new Animations();
+    }
+
+    public static void addWindowEventListener(WindowEventListener windowEventListener){
+        SignupGUIController.windowEventListener = windowEventListener;
     }
 
     @FXML
@@ -123,7 +129,8 @@ public class SignupGUIController implements CredentialNetworkListener {
     public void onOperationSuccessful(String message) {
         Platform.runLater(() ->{
             btnRegister.setDisable(false);
-            new Alert(Alert.AlertType.INFORMATION, message).show();
+            new Alert(Alert.AlertType.INFORMATION, message).showAndWait();
+            windowEventListener.onLoginScreenRequested();
         });
     }
 
