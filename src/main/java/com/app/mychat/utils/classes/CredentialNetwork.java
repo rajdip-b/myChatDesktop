@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class CredentialNetwork {
 
     private final CredentialNetworkListener networkListener;
-    //	private static final String serverIP = "3.109.181.96";
+//    	private static final String serverIP = "3.109.181.96";
     private static final String serverIP = "127.0.0.1";
     private static final int credentialServerPort = 5000;
     private ObjectOutputStream objectOutputStream;
