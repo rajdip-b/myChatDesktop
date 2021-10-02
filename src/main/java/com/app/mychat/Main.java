@@ -40,7 +40,7 @@ public class Main extends Application implements WindowEventListener {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.setTitle("myCHat - Login");
+        stage.setTitle("myChat - Login");
         return stage;
     }
 

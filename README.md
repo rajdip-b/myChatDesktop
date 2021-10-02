@@ -90,3 +90,7 @@ This project uses HashMap<String, Object> type of objects to communicate between
        [RESPONSE -> TO CLIENT FROM SERVER]
        (The initial message gets sent to all the active users except the one who sends it. The server doesn't reply on this kind of query)
    Once successful, all the active users on the network receives the message sent.
+
+# Running the app - 
+   1. Create a runnable jar.
+   2. java --module-path /path/to/javafx/lib--add-modules javafx.base,javafx.fxml,javafx.controls  -jar myChat.jar

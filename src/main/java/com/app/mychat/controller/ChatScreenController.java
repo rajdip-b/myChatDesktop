@@ -34,14 +34,14 @@ public class ChatScreenController implements ChatNetworkListener {
         username = Main.userName;
         chatNetwork = new ChatNetwork(this);
         try {
-            Thread.sleep(100);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         chatNetwork.sendMessage(MessageGenerator.generateHandshake(username));
         HashMap<String, Object> clientList = MessageGenerator.generateClientListRequestMessage(username);
         try {
-            Thread.sleep(100);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -94,6 +94,7 @@ public class ChatScreenController implements ChatNetworkListener {
     private void appendToMessagesSection(Message message){
         AnchorPane anchorPane = message.getMessageUI();
         vBoxMessages.getChildren().add(anchorPane);
+        vBoxMessages.setPrefHeight(vBoxMessages.getHeight()+15);
     }
 
     @FXML
