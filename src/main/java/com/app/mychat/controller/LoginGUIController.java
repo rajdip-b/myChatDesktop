@@ -1,10 +1,8 @@
 package com.app.mychat.controller;
 
-import java.util.HashMap;
-
-import com.app.mychat.utils.classes.Animations;
-import com.app.mychat.utils.classes.CredentialNetwork;
-import com.app.mychat.utils.classes.KeyValues;
+import com.app.mychat.utils.classes.ui.Animations;
+import com.app.mychat.utils.classes.backend.CredentialNetwork;
+import com.app.mychat.utils.classes.backend.MessageGenerator;
 import com.app.mychat.utils.interfaces.CredentialNetworkListener;
 import com.app.mychat.utils.interfaces.WindowEventListener;
 import javafx.application.Platform;
@@ -13,8 +11,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-import static com.app.mychat.utils.classes.Hash.hashUp;
-import static com.app.mychat.utils.classes.Regex.*;
+import static com.app.mychat.utils.classes.backend.Misc.hashUp;
+import static com.app.mychat.utils.classes.backend.Regex.*;
 
 public class LoginGUIController implements CredentialNetworkListener {
 
@@ -59,12 +57,8 @@ public class LoginGUIController implements CredentialNetworkListener {
             btnLogin.setDisable(true);
             lblErrPassword.setText("");
             lblErrAlias.setText("");
-            HashMap<String, Object> message = new HashMap<>();
             password = hashUp(password);
-            message.put(KeyValues.KEY_QUERY, KeyValues.QUERY_LOGIN_REQUEST);
-            message.put(KeyValues.KEY_USERNAME, username);
-            message.put(KeyValues.KEY_PASSWORD, password);
-            credentialNetwork.attemptLogin(message);
+            credentialNetwork.attemptLogin(MessageGenerator.generateLoginRequestMessage(username, password));
         }
     }
 
@@ -96,11 +90,11 @@ public class LoginGUIController implements CredentialNetworkListener {
     }
 
     @Override
-    public void onOperationSuccessful(String message) {
+    public void onOperationSuccessful(String message, String username) {
         Platform.runLater(() ->{
             btnLogin.setDisable(false);
             new Alert(Alert.AlertType.INFORMATION, message).showAndWait();
-            windowEventListener.onChatScreenRequested();
+            windowEventListener.onChatScreenRequested(username);
         });
     }
 

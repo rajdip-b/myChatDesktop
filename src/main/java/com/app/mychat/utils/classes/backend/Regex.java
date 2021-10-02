@@ -1,4 +1,4 @@
-package com.app.mychat.utils.classes;
+package com.app.mychat.utils.classes.backend;
 
 import java.util.regex.Pattern;
 

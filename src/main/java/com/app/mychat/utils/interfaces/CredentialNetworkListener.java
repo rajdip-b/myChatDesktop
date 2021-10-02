@@ -9,6 +9,6 @@ public interface CredentialNetworkListener {
     void onErrorWhileOperation(String message);
 
     //Gets triggered if login/signup was successful
-    void onOperationSuccessful(String message);
+    void onOperationSuccessful(String message, String username);
 
 }

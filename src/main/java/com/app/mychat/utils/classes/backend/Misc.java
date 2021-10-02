@@ -1,13 +1,13 @@
-package com.app.mychat.utils.classes;
+package com.app.mychat.utils.classes.backend;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 
-public class Hash {
+public class Misc {
 
-    @SuppressWarnings("unused")
     public static String hashUp(String input) {
         MessageDigest md = null;
         try {
@@ -21,6 +21,14 @@ public class Hash {
         while(hex.length() < 32)
             hex.insert(0, '0');
         return hex.toString();
+    }
+
+    public static int getQueryCode(HashMap<String, Object> message){
+        return (int) message.get(KeyValues.KEY_QUERY);
+    }
+
+    public static int getResponseCode(HashMap<String, Object> message){
+        return (int) message.get(KeyValues.KEY_RESPONSE_CODE);
     }
 
 }

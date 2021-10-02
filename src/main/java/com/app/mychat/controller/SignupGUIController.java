@@ -1,10 +1,8 @@
 package com.app.mychat.controller;
 
-import java.util.HashMap;
-
-import com.app.mychat.utils.classes.Animations;
-import com.app.mychat.utils.classes.CredentialNetwork;
-import com.app.mychat.utils.classes.KeyValues;
+import com.app.mychat.utils.classes.ui.Animations;
+import com.app.mychat.utils.classes.backend.CredentialNetwork;
+import com.app.mychat.utils.classes.backend.MessageGenerator;
 import com.app.mychat.utils.interfaces.CredentialNetworkListener;
 import com.app.mychat.utils.interfaces.WindowEventListener;
 import javafx.application.Platform;
@@ -13,8 +11,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-import static com.app.mychat.utils.classes.Hash.hashUp;
-import static com.app.mychat.utils.classes.Regex.*;
+import static com.app.mychat.utils.classes.backend.Misc.hashUp;
+import static com.app.mychat.utils.classes.backend.Regex.*;
 
 public class SignupGUIController implements CredentialNetworkListener {
 
@@ -42,6 +40,11 @@ public class SignupGUIController implements CredentialNetworkListener {
 
     public static void addWindowEventListener(WindowEventListener windowEventListener){
         SignupGUIController.windowEventListener = windowEventListener;
+    }
+
+    @FXML
+    public void initialize(){
+        animations.setButtonAnimation(btnRegister);
     }
 
     @FXML
@@ -87,20 +90,8 @@ public class SignupGUIController implements CredentialNetworkListener {
         if (flag) {
             btnRegister.setDisable(true);
             password = hashUp(password);
-            HashMap<String, Object> message = new HashMap<>();
-            message.put(KeyValues.KEY_QUERY, KeyValues.QUERY_SIGNUP_REQUEST);
-            message.put(KeyValues.KEY_FIRST_NAME, firstName);
-            message.put(KeyValues.KEY_LAST_NAME, lastName);
-            message.put(KeyValues.KEY_PASSWORD, password);
-            message.put(KeyValues.KEY_EMAIL, email);
-            message.put(KeyValues.KEY_USERNAME, alias);
-            credentialNetwork.attemptSignup(message);
+            credentialNetwork.attemptSignup(MessageGenerator.generateSignupRequestMessage(firstName, lastName, email, alias, password));
         }
-    }
-
-    @FXML
-    public void initialize(){
-        animations.setButtonAnimation(btnRegister);
     }
 
     public void onKeyPressed(KeyEvent event){
@@ -126,7 +117,7 @@ public class SignupGUIController implements CredentialNetworkListener {
     }
 
     @Override
-    public void onOperationSuccessful(String message) {
+    public void onOperationSuccessful(String message, String username) {
         Platform.runLater(() ->{
             btnRegister.setDisable(false);
             new Alert(Alert.AlertType.INFORMATION, message).showAndWait();

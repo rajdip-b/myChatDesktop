@@ -1,6 +1,7 @@
-package com.app.mychat.utils.classes;
+package com.app.mychat.utils.classes.backend;
 
 import com.app.mychat.utils.interfaces.CredentialNetworkListener;
+import static com.app.mychat.utils.classes.backend.Misc.*;
 
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
@@ -20,8 +21,6 @@ public class CredentialNetwork {
     private static SSLSocket socket;
 
     public CredentialNetwork(CredentialNetworkListener networkListener){
-        System.setProperty("javax.net.ssl.trustStore", "src/main/java/myChatTrustStore.jts");
-        System.setProperty("javax.net.ssl.trustStorePassword", "cPPMq4IXThdRK1gf");
         this.networkListener = networkListener;
     }
 
@@ -37,43 +36,41 @@ public class CredentialNetwork {
         }
     }
 
-    @SuppressWarnings("unchecked")
     public void attemptLogin(HashMap<String, Object> message){
         new Thread(() -> {
             try{
                 if(connectToCredentialServer()) {
-                    // Write the message to the server
                     objectOutputStream.writeObject(message);
-                    // Wait for the server to respond
                     HashMap<String, Object> m = (HashMap<String, Object>) objectInputStream.readObject();
-                    int responseCode = Integer.parseInt(m.get(KeyValues.KEY_RESPONSE_CODE).toString());
-                    if (responseCode == KeyValues.RESPONSE_CODE_FAILURE)
+                    int responseCode = getResponseCode(m);
+                    if (responseCode == KeyValues.RESPONSE_CODE_FAILURE) {
+                        System.out.println("here");
                         networkListener.onErrorWhileOperation((String) m.get(KeyValues.KEY_RESPONSE_MESSAGE));
+                        System.out.println("In err");
+                    }
                     else if (responseCode == KeyValues.RESPONSE_CODE_SUCCESS) {
-                        networkListener.onOperationSuccessful("Login successful!");
+                        networkListener.onOperationSuccessful("Login successful!", message.get(KeyValues.KEY_USERNAME).toString());
                     }
                 }
             }catch (IOException e){
                 networkListener.onErrorWhileOperation("Server down!");
             }catch (ClassNotFoundException ignored){
             }
+            disconnect();
         }).start();
     }
 
-    @SuppressWarnings("unchecked")
     public void attemptSignup(HashMap<String, Object> message) {
         new Thread(() -> {
             try {
                 if(connectToCredentialServer()) {
-                    // Write the message to the server
                     objectOutputStream.writeObject(message);
-                    // Wait for the server to respond
                     HashMap<String, Object> m = (HashMap<String, Object>) objectInputStream.readObject();
-                    int responseCode = Integer.parseInt(m.get(KeyValues.KEY_RESPONSE_CODE).toString());
+                    int responseCode = getResponseCode(m);
                     if (responseCode == KeyValues.RESPONSE_CODE_FAILURE)
                         networkListener.onErrorWhileOperation((String) m.get(KeyValues.KEY_RESPONSE_MESSAGE));
                     else if (responseCode == KeyValues.RESPONSE_CODE_SUCCESS) {
-                        networkListener.onOperationSuccessful("Signup successful!");
+                        networkListener.onOperationSuccessful("Signup successful!", message.get(KeyValues.KEY_USERNAME).toString());
                     }
                 }
             }catch (IOException e) {
@@ -81,10 +78,11 @@ public class CredentialNetwork {
             }catch (ClassNotFoundException e) {
                 // TODO: handle exception
             }
+            disconnect();
         }).start();
     }
 
-    public static void disconnect(){
+    private void disconnect(){
         try{
             socket.close();
         }catch (IOException | NullPointerException ignored){

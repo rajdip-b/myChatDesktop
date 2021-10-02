@@ -1,4 +1,4 @@
-package com.app.mychat.utils.classes;
+package com.app.mychat.utils.classes.ui;
 
 import javafx.animation.FillTransition;
 import javafx.scene.control.Button;

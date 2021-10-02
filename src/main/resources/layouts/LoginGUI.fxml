@@ -33,6 +33,6 @@
             <Font size="15.0" />
          </font>
       </PasswordField>
-      <Hyperlink layoutX="123.0" layoutY="334.0" onAction="#onCreateAccountClicked" prefHeight="22.0" prefWidth="133.0" text="Create an account." textAlignment="JUSTIFY" />
+      <Hyperlink layoutX="123.0" layoutY="334.0" onAction="#onCreateAccountClicked" prefHeight="22.0" prefWidth="133.0" text="Create an account" textAlignment="JUSTIFY" />
    </children>
 </AnchorPane>
