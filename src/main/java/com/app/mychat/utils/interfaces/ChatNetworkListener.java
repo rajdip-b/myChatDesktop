@@ -1,6 +1,7 @@
 package com.app.mychat.utils.interfaces;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface ChatNetworkListener {
 
@@ -8,6 +9,6 @@ public interface ChatNetworkListener {
 
     void serverUnreachable(String message);
 
-    void clientListRecieved(ArrayList<String> activeUsers, ArrayList<String> inactiveUsers);
+    void clientListRecieved(ArrayList<HashMap<String, Object>> activeUsers, ArrayList<HashMap<String, Object>> inactiveUsers);
 
 }

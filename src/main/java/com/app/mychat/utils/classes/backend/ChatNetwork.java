@@ -16,8 +16,8 @@ public class ChatNetwork {
     private ObjectInputStream objectInputStream;
     private ObjectOutputStream objectOutputStream;
     private final ChatNetworkListener chatNetworkListener;
-//    private static final String serverIP = "127.0.0.1";
-    private static final String serverIP = "3.109.181.96";
+    private static final String serverIP = "127.0.0.1";
+//    private static final String serverIP = "3.109.181.96";
     private static final int chatServerPort = 6000;
 
     public ChatNetwork(ChatNetworkListener chatNetworkListener){
@@ -72,8 +72,8 @@ public class ChatNetwork {
     }
 
     private void resolveResponseClientList(HashMap<String, Object> message){
-        ArrayList<String> active = (ArrayList<String>) message.get(KeyValues.KEY_ACTIVE_USERS_LIST);
-        ArrayList<String> inactive = (ArrayList<String>) message.get(KeyValues.KEY_INACTIVE_USERS_LIST);
+        ArrayList<HashMap<String, Object>> active = (ArrayList<HashMap<String, Object>>) message.get(KeyValues.KEY_ACTIVE_USERS_LIST);
+        ArrayList<HashMap<String, Object>> inactive = (ArrayList<HashMap<String, Object>>) message.get(KeyValues.KEY_INACTIVE_USERS_LIST);
         chatNetworkListener.clientListRecieved(active, inactive);
     }
 
