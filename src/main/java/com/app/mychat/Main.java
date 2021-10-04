@@ -1,5 +1,6 @@
 package com.app.mychat;
 
+import com.app.mychat.controller.ChatScreenController;
 import com.app.mychat.controller.LoginGUIController;
 import com.app.mychat.controller.SignupGUIController;
 import com.app.mychat.utils.interfaces.WindowEventListener;
@@ -19,7 +20,7 @@ public class Main extends Application implements WindowEventListener {
     public static String userName = null;
 
     public static void main(String[] args) {
-        System.setProperty("javax.net.ssl.trustStore", "myChatTrustStore.jts");
+        System.setProperty("javax.net.ssl.trustStore", "src/main/java/myChatTrustStore.jts");
         System.setProperty("javax.net.ssl.trustStorePassword", "cPPMq4IXThdRK1gf");
         launch(args);
     }
@@ -91,6 +92,7 @@ public class Main extends Application implements WindowEventListener {
     private void loadChatScreen(){
         currentStage = getChatScreenStage();
         currentStage.show();
+        ChatScreenController.addWindowEventListener(this);
     }
 
     @Override
@@ -110,5 +112,15 @@ public class Main extends Application implements WindowEventListener {
         currentStage.close();
         userName = username;
         loadChatScreen();
+    }
+
+    @Override
+    public void onSidebarOpened() {
+        currentStage.setWidth(currentStage.getWidth()+300);
+    }
+
+    @Override
+    public void onSidebarClosed() {
+        currentStage.setWidth(currentStage.getWidth()-300);
     }
 }

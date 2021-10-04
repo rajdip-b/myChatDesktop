@@ -16,8 +16,8 @@ public class ChatNetwork {
     private ObjectInputStream objectInputStream;
     private ObjectOutputStream objectOutputStream;
     private final ChatNetworkListener chatNetworkListener;
-//    private static final String serverIP = "127.0.0.1";
-    private static final String serverIP = "3.109.181.96";
+    private static final String serverIP = "127.0.0.1";
+//    private static final String serverIP = "3.109.181.96";
     private static final int chatServerPort = 6000;
 
     public ChatNetwork(ChatNetworkListener chatNetworkListener){
