@@ -86,9 +86,11 @@ public class ChatNetwork {
 
     private void resolveResponseHandshake(HashMap<String, Object> message){
         ArrayList<ArrayList <String>> existingMessages = (ArrayList<ArrayList<String>>) message.get(KeyValues.KEY_EXISTING_MESSAGES);
+        HashMap<String, Object> userDetails = (HashMap<String, Object>) message.get(KeyValues.KEY_USER_DETAILS);
         for (ArrayList<String> existingMessage : existingMessages){
             chatNetworkListener.messageReceived(existingMessage.get(0), existingMessage.get(1));
         }
+        chatNetworkListener.userDetailsReceived(userDetails);
     }
 
     public synchronized void sendMessage(HashMap<String, Object> message){

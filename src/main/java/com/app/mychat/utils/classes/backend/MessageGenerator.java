@@ -50,4 +50,28 @@ public class MessageGenerator {
         return msg;
     }
 
+    public static HashMap<String, Object> generatePasswordRequestMessage(String username){
+        HashMap<String, Object> msg = new HashMap<>();
+        msg.put(KEY_QUERY, QUERY_REQUEST_PASSWORD);
+        msg.put(KEY_USERNAME, username);
+        return msg;
+    }
+
+    public static HashMap<String, Object> generateEditAccountRequestMessage(String username, String firstName, String lastName, String password){
+        HashMap<String, Object> msg = new HashMap<>();
+        msg.put(KEY_QUERY, QUERY_EDIT_ACCOUNT);
+        msg.put(KEY_USERNAME, username);
+        msg.put(KEY_FIRST_NAME, firstName);
+        msg.put(KEY_LAST_NAME, lastName);
+        msg.put(KEY_PASSWORD, password);
+        return msg;
+    }
+
+    public static HashMap<String, Object> generateDeleteAccountRequestMessage(String username){
+        HashMap<String, Object> msg = new HashMap<>();
+        msg.put(KEY_QUERY, QUERY_DELETE_ACCOUNT);
+        msg.put(KEY_USERNAME, username);
+        return msg;
+    }
+
 }

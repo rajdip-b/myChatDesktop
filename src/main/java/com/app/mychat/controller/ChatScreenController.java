@@ -2,10 +2,14 @@ package com.app.mychat.controller;
 
 import com.app.mychat.Main;
 import com.app.mychat.utils.classes.backend.ChatNetwork;
+import com.app.mychat.utils.classes.backend.KeyValues;
 import com.app.mychat.utils.classes.backend.MessageGenerator;
+import com.app.mychat.utils.classes.ui.Layout;
 import com.app.mychat.utils.classes.ui.Message;
 import com.app.mychat.utils.classes.ui.Person;
+import com.app.mychat.utils.classes.ui.UserInterface;
 import com.app.mychat.utils.interfaces.ChatNetworkListener;
+import com.app.mychat.utils.interfaces.SidebarEventListener;
 import com.app.mychat.utils.interfaces.WindowEventListener;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -24,7 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class ChatScreenController implements ChatNetworkListener {
+public class ChatScreenController implements ChatNetworkListener, SidebarEventListener {
 
     private ChatNetwork chatNetwork;
 
@@ -35,6 +39,10 @@ public class ChatScreenController implements ChatNetworkListener {
     @FXML private HBox hbox;
 
     private String username;
+    private String firstName;
+    private String lastName;
+    private String email;
+
     private static WindowEventListener windowEventListener;
     private boolean isSidebarOpen;
     private AnchorPane sidebar;
@@ -47,7 +55,7 @@ public class ChatScreenController implements ChatNetworkListener {
     public void initialize(){
         isSidebarOpen = false;
         username = Main.userName;
-        sidebar = getSidebar();
+        sidebar = UserInterface.getSidebarPane(new Layout().getSidebarLayout());
         chatNetwork = new ChatNetwork(this);
         try {
             Thread.sleep(1000);
@@ -97,6 +105,13 @@ public class ChatScreenController implements ChatNetworkListener {
         });
     }
 
+    @Override
+    public void userDetailsReceived(HashMap<String, Object> userDetails) {
+        firstName = (String) userDetails.get(KeyValues.KEY_FIRST_NAME);
+        lastName = (String) userDetails.get(KeyValues.KEY_LAST_NAME);
+        email = (String) userDetails.get(KeyValues.KEY_EMAIL);
+    }
+
     private void appendToActiveUsersListSection(Person person){
         AnchorPane anchorPane = person.getPersonUI();
         vBoxActive.getChildren().add(anchorPane);
@@ -132,16 +147,6 @@ public class ChatScreenController implements ChatNetworkListener {
             onSendClicked();
     }
 
-    private AnchorPane getSidebar(){
-        Parent root = null;
-        try{
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fragments/Sidebar.fxml")));
-        }catch (IOException e){
-            System.exit(1);
-        }
-        return new AnchorPane(root);
-    }
-
     @FXML
     public void onSidebarClicked(){
         if(!isSidebarOpen){
@@ -155,4 +160,18 @@ public class ChatScreenController implements ChatNetworkListener {
         }
     }
 
+    @Override
+    public void onAccountDeleteRequested() {
+
+    }
+
+    @Override
+    public void onAccountEditRequested(String firstName, String lastName, String password, String username) {
+
+    }
+
+    @Override
+    public void onCheckUpdateRequested() {
+
+    }
 }

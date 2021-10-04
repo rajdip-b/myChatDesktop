@@ -1,6 +1,11 @@
 package com.app.mychat.controller;
 
+import com.app.mychat.utils.classes.ui.Layout;
+import com.app.mychat.utils.classes.ui.UserInterface;
+import com.app.mychat.utils.interfaces.SidebarEventListener;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
@@ -8,10 +13,17 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.function.Consumer;
 
 public class SidebarController {
 
     @FXML private Label lblUsername; // Label that displays the username
+
+    private static SidebarEventListener sidebarEventListener;
+
+    public static void addSidebarEventListener(SidebarEventListener sidebarEventListener){
+        SidebarController.sidebarEventListener = sidebarEventListener;
+    }
 
     // Darkens the label upon which the mouse enters
     @FXML
@@ -19,7 +31,6 @@ public class SidebarController {
         Label label = (Label) mouseEvent.getSource();
         label.setStyle("-fx-background-color: rgb(214, 214, 214)");
     }
-
 
     // Lightens the label that the mouse exits
     @FXML
@@ -31,7 +42,7 @@ public class SidebarController {
     // To edit the user credentials
     @FXML
     public void onEditAccountClicked(MouseEvent mouseEvent){
-
+        UserInterface.getEditAccountStage(new Layout().getEditAccountLayout()).show();
     }
 
     // Account will be deleted
@@ -43,7 +54,15 @@ public class SidebarController {
     //Logouts the present logged in user
     @FXML
     public void onLogoutClicked(MouseEvent mouseEvent){
-
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION, "Log out?", ButtonType.YES, ButtonType.NO);
+        a.showAndWait().ifPresent(new Consumer<ButtonType>() {
+            @Override
+            public void accept(ButtonType buttonType) {
+                if(buttonType == ButtonType.YES){
+                    System.exit(1);
+                }
+            }
+        });
     }
 
     // Updates the software
