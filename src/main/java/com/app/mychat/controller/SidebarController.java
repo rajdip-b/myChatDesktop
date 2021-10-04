@@ -1,9 +1,13 @@
 package com.app.mychat.controller;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class SidebarController {
 
@@ -43,7 +47,18 @@ public class SidebarController {
 
     @FXML
     public void onGithubClicked(MouseEvent mouseEvent){
-
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://github.com/rajdip-b/myChatDesktop"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
 }
