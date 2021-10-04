@@ -7,7 +7,7 @@ import javafx.scene.input.MouseEvent;
 
 public class SidebarController {
 
-    @FXML private Label lblUsername;
+    @FXML private Label lblUsername; // Label that displays the username
 
     @FXML
     public void onMouseEntered(MouseEvent mouseEvent){
@@ -22,27 +22,27 @@ public class SidebarController {
     }
 
     @FXML
-    public void onEditAccountClicked(MouseEvent mouseEvent){
+    public void onEditAccountClicked(MouseEvent mouseEvent){ // To edit the user credentials
 
     }
 
     @FXML
-    public void onDeleteAccountClicked(MouseEvent mouseEvent){
+    public void onDeleteAccountClicked(MouseEvent mouseEvent){  // Account will be deleted
 
     }
 
     @FXML
-    public void onLogoutClicked(MouseEvent mouseEvent){
+    public void onLogoutClicked(MouseEvent mouseEvent){ // Logouts the present logged in user
 
     }
 
     @FXML
-    public void onCheckForUpdatesClicked(MouseEvent mouseEvent){
+    public void onCheckForUpdatesClicked(MouseEvent mouseEvent){ // Updates the chat window
 
     }
 
     @FXML
-    public void onGithubClicked(MouseEvent mouseEvent){
+    public void onGithubClicked(MouseEvent mouseEvent){ // Opens the original repository in GIT-Hub
 
     }
 
