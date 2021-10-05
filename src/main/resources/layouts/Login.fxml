@@ -11,28 +11,28 @@
 
 <AnchorPane prefHeight="390.0" prefWidth="377.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.mychat.controller.LoginGUIController">
    <children>
-      <TextField id="txtAlias" fx:id="txtAlias" layoutX="74.0" layoutY="124.0" onKeyPressed="#onKeyPressed" prefHeight="43.0" prefWidth="230.0" promptText="Enter alias...">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <Button fx:id="btnLogin" layoutX="74.0" layoutY="267.0" mnemonicParsing="false" onAction="#onLoginClicked" prefHeight="40.0" prefWidth="230.0" style="-fx-background-color: rgb(19, 155, 240); -fx-font-weight: 500;" text="LOG IN" textAlignment="JUSTIFY" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
       <Text fill="#0b4dba" layoutX="74.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="Log In" wrappingWidth="132.7294921875">
          <font>
             <Font size="21.0" />
          </font>
       </Text>
+      <TextField id="txtAlias" fx:id="txtAlias" layoutX="74.0" layoutY="124.0" onKeyPressed="#onKeyPressed" prefHeight="43.0" prefWidth="230.0" promptText="Enter alias...">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
       <Label fx:id="lblErrAlias" layoutX="74.0" layoutY="167.0" prefHeight="24.0" prefWidth="230.0" textFill="RED" />
-      <Label fx:id="lblErrPassword" layoutX="74.0" layoutY="240.0" prefHeight="24.0" prefWidth="230.0" textFill="RED" />
       <PasswordField fx:id="txtPassword" layoutX="74.0" layoutY="197.0" onKeyPressed="#onKeyPressed" prefHeight="43.0" prefWidth="230.0" promptText="Enter Password...">
          <font>
             <Font size="15.0" />
          </font>
       </PasswordField>
+      <Label fx:id="lblErrPassword" layoutX="74.0" layoutY="240.0" prefHeight="24.0" prefWidth="230.0" textFill="RED" />
+      <Button fx:id="btnLogin" layoutX="74.0" layoutY="267.0" mnemonicParsing="false" onAction="#onLoginClicked" prefHeight="40.0" prefWidth="230.0" style="-fx-background-color: rgb(19, 155, 240); -fx-font-weight: 500;" text="LOG IN" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
       <Hyperlink layoutX="123.0" layoutY="334.0" onAction="#onCreateAccountClicked" prefHeight="22.0" prefWidth="133.0" text="Create an account" textAlignment="JUSTIFY" />
    </children>
 </AnchorPane>

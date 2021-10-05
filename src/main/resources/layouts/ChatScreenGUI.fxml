@@ -34,7 +34,7 @@
                         <VBox fx:id="vBoxActive" prefHeight="60.0" prefWidth="238.0" />
                      </content>
                   </ScrollPane>
-                  <ScrollPane layoutX="-2.0" layoutY="354.0" prefHeight="257.0" prefWidth="254.0">
+                  <ScrollPane layoutX="-2.0" layoutY="354.0" prefHeight="262.0" prefWidth="254.0">
                      <content>
                         <VBox fx:id="vBoxInactive" prefHeight="60.0" prefWidth="238.0" />
                      </content>
@@ -53,7 +53,7 @@
                         <Font size="14.0" />
                      </font>
                   </TextArea>
-                  <Button layoutX="633.0" layoutY="574.0" mnemonicParsing="false" onAction="#onSendClicked" prefHeight="39.0" prefWidth="119.0" text="Send" />
+                  <Button layoutX="633.0" layoutY="574.0" mnemonicParsing="false" onAction="#onSendClicked" prefHeight="43.0" prefWidth="119.0" text="Send" />
                </children>
             </AnchorPane>
 <!--=======-->

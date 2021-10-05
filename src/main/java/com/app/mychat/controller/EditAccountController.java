@@ -6,6 +6,7 @@ import com.app.mychat.utils.classes.backend.UserDetails;
 import com.app.mychat.utils.interfaces.SidebarEventListener;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class EditAccountController {
@@ -13,8 +14,8 @@ public class EditAccountController {
     @FXML private TextField txtAlias;
     @FXML private TextField txtFirstname;
     @FXML private TextField txtLastname;
-    @FXML private TextField txtPassword;
-    @FXML private TextField txtConfirmPassword;
+    @FXML private PasswordField txtPassword;
+    @FXML private PasswordField txtConfirmPassword;
 
     private String alias;
     private String firstName;
