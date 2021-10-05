@@ -1,5 +1,8 @@
 package com.app.mychat.utils.classes.backend;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -23,12 +26,25 @@ public class Misc {
         return hex.toString();
     }
 
+
     public static int getQueryCode(HashMap<String, Object> message){
         return (int) message.get(KeyValues.KEY_QUERY);
     }
 
     public static int getResponseCode(HashMap<String, Object> message){
         return (int) message.get(KeyValues.KEY_RESPONSE_CODE);
+    }
+
+    public static Alert getErrorAlert(String message){
+        return new Alert(Alert.AlertType.ERROR, message);
+    }
+
+    public static Alert getConfirmationAlert(String message){
+        return new Alert(Alert.AlertType.CONFIRMATION, message, ButtonType.YES, ButtonType.CANCEL);
+    }
+
+    public static Alert getInformationAlert(String message){
+        return new Alert(Alert.AlertType.INFORMATION, message);
     }
 
 }

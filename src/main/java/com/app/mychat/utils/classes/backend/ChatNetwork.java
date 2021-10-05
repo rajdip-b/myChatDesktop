@@ -16,8 +16,8 @@ public class ChatNetwork {
     private ObjectInputStream objectInputStream;
     private ObjectOutputStream objectOutputStream;
     private final ChatNetworkListener chatNetworkListener;
-//    private static final String serverIP = "127.0.0.1";
-    private static final String serverIP = "3.109.181.96";
+    private static final String serverIP = "127.0.0.1";
+//    private static final String serverIP = "3.109.181.96";
     private static final int chatServerPort = 6000;
 
     public ChatNetwork(ChatNetworkListener chatNetworkListener){
@@ -55,7 +55,7 @@ public class ChatNetwork {
                 }
             }
         }catch(IOException e){
-            e.printStackTrace();
+//            e.printStackTrace();
             chatNetworkListener.serverUnreachable("Disconnected");
         }catch(ClassNotFoundException e){
             System.exit(1);
@@ -63,17 +63,24 @@ public class ChatNetwork {
     }
 
     private void resolveMessage(HashMap<String, Object> message){
-        int queryCode = (Integer)message.get(KeyValues.KEY_QUERY);
+        int queryCode = Misc.getQueryCode(message);
         switch (queryCode){
             case KeyValues.QUERY_CLIENT_LIST -> resolveResponseClientList(message);
             case KeyValues.QUERY_SEND_MESSAGE -> resolveResponseTextMessage(message);
             case KeyValues.QUERY_HANDSHAKE -> resolveResponseHandshake(message);
+            case KeyValues.QUERY_EDIT_ACCOUNT -> resolveResponseEditAccount(message);
         }
     }
 
+    private void resolveResponseEditAccount(HashMap<String, Object> message){
+        int responseCode = (Integer) message.get(KeyValues.KEY_RESPONSE_CODE);
+        String responseMessage = (String) message.get(KeyValues.KEY_RESPONSE_MESSAGE);
+        chatNetworkListener.editAccountResponseReceived(responseCode, responseMessage);
+    }
+
     private void resolveResponseClientList(HashMap<String, Object> message){
-        ArrayList<String> active = (ArrayList<String>) message.get(KeyValues.KEY_ACTIVE_USERS_LIST);
-        ArrayList<String> inactive = (ArrayList<String>) message.get(KeyValues.KEY_INACTIVE_USERS_LIST);
+        ArrayList<HashMap<String, Object>> active = (ArrayList<HashMap<String, Object>>) message.get(KeyValues.KEY_ACTIVE_USERS_LIST);
+        ArrayList<HashMap<String, Object>> inactive = (ArrayList<HashMap<String, Object>>) message.get(KeyValues.KEY_INACTIVE_USERS_LIST);
         chatNetworkListener.clientListRecieved(active, inactive);
     }
 
@@ -86,9 +93,11 @@ public class ChatNetwork {
 
     private void resolveResponseHandshake(HashMap<String, Object> message){
         ArrayList<ArrayList <String>> existingMessages = (ArrayList<ArrayList<String>>) message.get(KeyValues.KEY_EXISTING_MESSAGES);
+        HashMap<String, Object> userDetails = (HashMap<String, Object>) message.get(KeyValues.KEY_USER_DETAILS);
         for (ArrayList<String> existingMessage : existingMessages){
             chatNetworkListener.messageReceived(existingMessage.get(0), existingMessage.get(1));
         }
+        chatNetworkListener.userDetailsReceived(userDetails);
     }
 
     public synchronized void sendMessage(HashMap<String, Object> message){

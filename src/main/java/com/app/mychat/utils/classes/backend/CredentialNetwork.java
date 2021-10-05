@@ -13,8 +13,8 @@ import java.util.HashMap;
 public class CredentialNetwork {
 
     private final CredentialNetworkListener networkListener;
-    	private static final String serverIP = "3.109.181.96";
-//    private static final String serverIP = "127.0.0.1";
+//    	private static final String serverIP = "3.109.181.96";
+    private static final String serverIP = "127.0.0.1";
     private static final int credentialServerPort = 5000;
     private ObjectOutputStream objectOutputStream;
     private ObjectInputStream objectInputStream;
@@ -44,9 +44,7 @@ public class CredentialNetwork {
                     HashMap<String, Object> m = (HashMap<String, Object>) objectInputStream.readObject();
                     int responseCode = getResponseCode(m);
                     if (responseCode == KeyValues.RESPONSE_CODE_FAILURE) {
-                        System.out.println("here");
                         networkListener.onErrorWhileOperation((String) m.get(KeyValues.KEY_RESPONSE_MESSAGE));
-                        System.out.println("In err");
                     }
                     else if (responseCode == KeyValues.RESPONSE_CODE_SUCCESS) {
                         networkListener.onOperationSuccessful("Login successful!", message.get(KeyValues.KEY_USERNAME).toString());

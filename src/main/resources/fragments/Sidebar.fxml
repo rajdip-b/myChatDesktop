@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="617.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.mychat.controller.SidebarController">
+   <children>
+      <Label fx:id="lblUsername" layoutY="78.0" prefHeight="54.0" prefWidth="300.0" text="Username">
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutY="266.0" onMouseClicked="#onEditAccountClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefHeight="54.0" prefWidth="300.0" text="Edit account">
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutY="319.0" onMouseClicked="#onDeleteAccountClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefHeight="54.0" prefWidth="300.0" text="Delete account">
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutY="373.0" onMouseClicked="#onLogoutClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefHeight="54.0" prefWidth="300.0" text="Logout">
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutY="509.0" onMouseClicked="#onGithubClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefHeight="54.0" prefWidth="300.0" text="GitHub">
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutY="563.0" onMouseClicked="#onCheckForUpdatesClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefHeight="54.0" prefWidth="300.0" text="Check for updates...">
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

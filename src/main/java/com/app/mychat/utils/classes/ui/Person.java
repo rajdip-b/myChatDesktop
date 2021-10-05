@@ -1,12 +1,7 @@
 package com.app.mychat.utils.classes.ui;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.control.Label;
+import com.app.mychat.utils.interfaces.SidebarEventListener;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-
-import java.io.IOException;
 
 public class Person {
 
@@ -14,30 +9,19 @@ public class Person {
     public static final String STATUS_INACTIVE = "Offline";
     public static final String STATUS_TYPING = "Typing...";
 
-    private AnchorPane anchorPane;
-    private Label txtPerson;
-    private Text txtStatus;
+    private final AnchorPane anchorPane;
 
-    public Person(){
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/fragments/MessageContainer.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        txtPerson = (Label) root.getChildrenUnmodifiable().get(0);
-        txtStatus = (Text) root.getChildrenUnmodifiable().get(1);
-        anchorPane = new AnchorPane();
-        anchorPane.setPrefWidth(238);
-        anchorPane.setPrefHeight(60);
-    }
+    private String username;
+    private String firstName;
+    private String lastName;
+    private String email;
 
-    public Person(String person, String status){
-        this();
-        txtPerson.setText(person);
-        txtStatus.setText(status);
-        anchorPane.getChildren().add(txtPerson);
-        anchorPane.getChildren().add(txtStatus);
+    public Person(String firstName, String lastName, String email, String username, String status, SidebarEventListener sidebarEventListener) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        anchorPane = UserInterface.getPersonContainerPane(username, firstName, lastName, email, status, new Layout().getPersonContainerLayout(), sidebarEventListener);
     }
 
     public AnchorPane getPersonUI(){

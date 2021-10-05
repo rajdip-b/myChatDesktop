@@ -1,24 +1,21 @@
 package com.app.mychat;
 
+import com.app.mychat.controller.ChatScreenController;
 import com.app.mychat.controller.LoginGUIController;
 import com.app.mychat.controller.SignupGUIController;
+import com.app.mychat.utils.classes.backend.UserDetails;
+import com.app.mychat.utils.classes.ui.Layout;
+import com.app.mychat.utils.classes.ui.UserInterface;
 import com.app.mychat.utils.interfaces.WindowEventListener;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.Objects;
 
 public class Main extends Application implements WindowEventListener {
 
     private static Stage currentStage = null;
-    public static String userName = null;
 
     public static void main(String[] args) {
+//        System.setProperty("javax.net.ssl.trustStore", "src/main/java/myChatTrustStore.jts");
         System.setProperty("javax.net.ssl.trustStore", "myChatTrustStore.jts");
         System.setProperty("javax.net.ssl.trustStorePassword", "cPPMq4IXThdRK1gf");
         launch(args);
@@ -29,68 +26,22 @@ public class Main extends Application implements WindowEventListener {
         loadLoginScreen();
     }
 
-    private Stage getLoginStage(){
-        Stage stage = new Stage();
-        Parent root = null;
-        try{
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/layouts/LoginGUI.fxml")));
-        }catch (IOException e){
-            System.exit(1);
-        }
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.setTitle("myChat - Login");
-        return stage;
-    }
-
-    private Stage getSignupStage(){
-        Stage stage = new Stage();
-        Parent root = null;
-        try{
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/layouts/SignupGUI.fxml")));
-        }catch (IOException e){
-            System.exit(1);
-        }
-        stage.setTitle("myChat - Sign up");
-        stage.setScene(new Scene(root));
-        stage.setResizable(false);
-        return stage;
-    }
-
-    private Stage getChatScreenStage(){
-        Stage stage = new Stage();
-        Parent root = null;
-        try{
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/layouts/ChatScreenGUI.fxml")));
-        }catch (IOException e){
-            System.exit(1);
-        }
-        stage.setTitle("myChat - Chat screen");
-        stage.setScene(new Scene(root));
-        stage.setResizable(false);
-        stage.setOnCloseRequest(event -> {
-            Platform.exit();
-            System.exit(1);
-        });
-        return stage;
-    }
-
     private void loadLoginScreen(){
-        currentStage = getLoginStage();
+        currentStage = UserInterface.getLoginStage(new Layout().getLoginLayout());
         currentStage.show();
         LoginGUIController.addWindowEventListener(this);
     }
 
     private void loadSignupScreen(){
-        currentStage = getSignupStage();
+        currentStage = UserInterface.getSignupStage(new Layout().getSignupLayout());
         currentStage.show();
         SignupGUIController.addWindowEventListener(this);
     }
 
     private void loadChatScreen(){
-        currentStage = getChatScreenStage();
+        currentStage = UserInterface.getChatScreenStage(new Layout().getChatScreenLayout());
         currentStage.show();
+        ChatScreenController.addWindowEventListener(this);
     }
 
     @Override
@@ -106,9 +57,19 @@ public class Main extends Application implements WindowEventListener {
     }
 
     @Override
-    public void onChatScreenRequested(String username) {
+    public void onChatScreenRequested() {
         currentStage.close();
-        userName = username;
         loadChatScreen();
     }
+
+    @Override
+    public void onSidebarOpened() {
+        currentStage.setWidth(currentStage.getWidth()+300);
+    }
+
+    @Override
+    public void onSidebarClosed() {
+        currentStage.setWidth(currentStage.getWidth()-300);
+    }
+
 }

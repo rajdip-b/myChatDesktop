@@ -5,13 +5,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="65.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPane" prefHeight="65.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="txtPerson" layoutX="14.0" layoutY="4.0" prefHeight="21.0" prefWidth="579.0" text="Person">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
       <Text fx:id="txtMessage" layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Message" wrappingWidth="599.0" />
-      <Label fx:id="txtTimeStamp" layoutX="627.0" layoutY="37.0" prefHeight="16.0" prefWidth="122.0" text="TimeStamp" />
+      <Label fx:id="txtTimeStamp" layoutX="619.0" layoutY="37.0" prefHeight="16.0" prefWidth="120.0" text="TimeStamp" />
    </children>
 </AnchorPane>
