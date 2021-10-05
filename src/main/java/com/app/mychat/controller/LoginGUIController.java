@@ -1,5 +1,6 @@
 package com.app.mychat.controller;
 
+import com.app.mychat.utils.classes.backend.UserDetails;
 import com.app.mychat.utils.classes.ui.Animations;
 import com.app.mychat.utils.classes.backend.CredentialNetwork;
 import com.app.mychat.utils.classes.backend.MessageGenerator;
@@ -94,7 +95,8 @@ public class LoginGUIController implements CredentialNetworkListener {
         Platform.runLater(() ->{
             btnLogin.setDisable(false);
             new Alert(Alert.AlertType.INFORMATION, message).showAndWait();
-            windowEventListener.onChatScreenRequested(username);
+            UserDetails.userName = username;
+            windowEventListener.onChatScreenRequested();
         });
     }
 

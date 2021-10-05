@@ -1,5 +1,7 @@
 package com.app.mychat.utils.classes.backend;
 
+import javafx.scene.control.Alert;
+
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -29,6 +31,10 @@ public class Misc {
 
     public static int getResponseCode(HashMap<String, Object> message){
         return (int) message.get(KeyValues.KEY_RESPONSE_CODE);
+    }
+
+    public static Alert getErrorAlert(String message){
+        return new Alert(Alert.AlertType.ERROR, message);
     }
 
 }

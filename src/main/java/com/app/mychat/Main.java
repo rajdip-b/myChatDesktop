@@ -3,6 +3,7 @@ package com.app.mychat;
 import com.app.mychat.controller.ChatScreenController;
 import com.app.mychat.controller.LoginGUIController;
 import com.app.mychat.controller.SignupGUIController;
+import com.app.mychat.utils.classes.backend.UserDetails;
 import com.app.mychat.utils.classes.ui.Layout;
 import com.app.mychat.utils.classes.ui.UserInterface;
 import com.app.mychat.utils.interfaces.WindowEventListener;
@@ -12,7 +13,6 @@ import javafx.stage.Stage;
 public class Main extends Application implements WindowEventListener {
 
     private static Stage currentStage = null;
-    public static String userName = null;
 
     public static void main(String[] args) {
         System.setProperty("javax.net.ssl.trustStore", "src/main/java/myChatTrustStore.jts");
@@ -56,9 +56,8 @@ public class Main extends Application implements WindowEventListener {
     }
 
     @Override
-    public void onChatScreenRequested(String username) {
+    public void onChatScreenRequested() {
         currentStage.close();
-        userName = username;
         loadChatScreen();
     }
 

@@ -4,6 +4,7 @@ import com.app.mychat.Main;
 import com.app.mychat.utils.classes.backend.ChatNetwork;
 import com.app.mychat.utils.classes.backend.KeyValues;
 import com.app.mychat.utils.classes.backend.MessageGenerator;
+import com.app.mychat.utils.classes.backend.UserDetails;
 import com.app.mychat.utils.classes.ui.Layout;
 import com.app.mychat.utils.classes.ui.Message;
 import com.app.mychat.utils.classes.ui.Person;
@@ -23,10 +24,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class ChatScreenController implements ChatNetworkListener, SidebarEventListener {
 
@@ -37,11 +36,6 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
     @FXML private VBox vBoxInactive;
     @FXML private TextArea txtMessage;
     @FXML private HBox hbox;
-
-    private String username;
-    private String firstName;
-    private String lastName;
-    private String email;
 
     private static WindowEventListener windowEventListener;
     private boolean isSidebarOpen;
@@ -54,22 +48,20 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
     @FXML
     public void initialize(){
         isSidebarOpen = false;
-        username = Main.userName;
         sidebar = UserInterface.getSidebarPane(new Layout().getSidebarLayout());
         chatNetwork = new ChatNetwork(this);
         try {
-            Thread.sleep(1000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        chatNetwork.sendMessage(MessageGenerator.generateHandshake(username));
-        HashMap<String, Object> clientList = MessageGenerator.generateClientListRequestMessage(username);
+        chatNetwork.sendMessage(MessageGenerator.generateHandshake(UserDetails.userName));
         try {
-            Thread.sleep(1000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        chatNetwork.sendMessage(clientList);
+        chatNetwork.sendMessage(MessageGenerator.generateClientListRequestMessage(UserDetails.userName));
     }
 
     @Override
@@ -107,9 +99,9 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
 
     @Override
     public void userDetailsReceived(HashMap<String, Object> userDetails) {
-        firstName = (String) userDetails.get(KeyValues.KEY_FIRST_NAME);
-        lastName = (String) userDetails.get(KeyValues.KEY_LAST_NAME);
-        email = (String) userDetails.get(KeyValues.KEY_EMAIL);
+        UserDetails.firstName = (String) userDetails.get(KeyValues.KEY_FIRST_NAME);
+        UserDetails.lastName = (String) userDetails.get(KeyValues.KEY_LAST_NAME);
+        UserDetails.email = (String) userDetails.get(KeyValues.KEY_EMAIL);
     }
 
     private void appendToActiveUsersListSection(Person person){
@@ -125,14 +117,13 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
     private void appendToMessagesSection(Message message){
         AnchorPane anchorPane = message.getMessageUI();
         vBoxMessages.getChildren().add(anchorPane);
-        vBoxMessages.setPrefHeight(vBoxMessages.getHeight()+15);
     }
 
     @FXML
     public void onSendClicked(){
         String message = txtMessage.getText().trim();
         if (!message.equals("")) {
-            HashMap<String, Object> msg = MessageGenerator.generateTextMessage(username, message);
+            HashMap<String, Object> msg = MessageGenerator.generateTextMessage(UserDetails.userName, message);
             chatNetwork.sendMessage(msg);
             Platform.runLater(() -> {
                 appendToMessagesSection(new Message("You", message));
@@ -153,6 +144,7 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
             windowEventListener.onSidebarOpened();
             isSidebarOpen = true;
             hbox.getChildren().add(sidebar);
+            SidebarController.addSidebarEventListener(this);
         }else {
             windowEventListener.onSidebarClosed();
             isSidebarOpen = false;
