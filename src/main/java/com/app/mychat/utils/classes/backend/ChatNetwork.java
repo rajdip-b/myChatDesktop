@@ -72,8 +72,8 @@ public class ChatNetwork {
     }
 
     private void resolveResponseClientList(HashMap<String, Object> message){
-        ArrayList<String> active = (ArrayList<String>) message.get(KeyValues.KEY_ACTIVE_USERS_LIST);
-        ArrayList<String> inactive = (ArrayList<String>) message.get(KeyValues.KEY_INACTIVE_USERS_LIST);
+        ArrayList<HashMap<String, Object>> active = (ArrayList<HashMap<String, Object>>) message.get(KeyValues.KEY_ACTIVE_USERS_LIST);
+        ArrayList<HashMap<String, Object>> inactive = (ArrayList<HashMap<String, Object>>) message.get(KeyValues.KEY_INACTIVE_USERS_LIST);
         chatNetworkListener.clientListRecieved(active, inactive);
     }
 

@@ -7,7 +7,7 @@ public interface ChatNetworkListener {
 
     void messageReceived(String sender, String message);
     void serverUnreachable(String message);
-    void clientListRecieved(ArrayList<String> activeUsers, ArrayList<String> inactiveUsers);
     void userDetailsReceived(HashMap<String, Object> userDetails);
+    void clientListRecieved(ArrayList<HashMap<String, Object>> activeUsers, ArrayList<HashMap<String, Object>> inactiveUsers);
 
 }

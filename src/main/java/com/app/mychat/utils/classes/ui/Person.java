@@ -10,8 +10,17 @@ public class Person {
 
     private final AnchorPane anchorPane;
 
-    public Person(String person, String status){
-        anchorPane = UserInterface.getPersonContainerPane(person, status, new Layout().getPersonContainerLayout());
+    private String username;
+    private String firstName;
+    private String lastName;
+    private String email;
+
+    public Person(String firstName, String lastName, String email, String username, String status) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        anchorPane = UserInterface.getPersonContainerPane(username, status, new Layout().getPersonContainerLayout());
     }
 
     public AnchorPane getPersonUI(){

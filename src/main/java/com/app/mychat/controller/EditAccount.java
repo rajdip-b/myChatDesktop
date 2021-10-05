@@ -32,7 +32,7 @@ public class EditAccount {
 
     }
 
-    private boolean initTextVars(){
+    private void initTextVars(){
         alias = txtAlias.getText().trim();
         firstName = txtFirstname.getText().trim();
         lastName = txtLastname.getText().trim();

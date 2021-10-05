@@ -1,6 +1,5 @@
 package com.app.mychat.controller;
 
-import com.app.mychat.Main;
 import com.app.mychat.utils.classes.backend.ChatNetwork;
 import com.app.mychat.utils.classes.backend.KeyValues;
 import com.app.mychat.utils.classes.backend.MessageGenerator;
@@ -12,10 +11,10 @@ import com.app.mychat.utils.classes.ui.UserInterface;
 import com.app.mychat.utils.interfaces.ChatNetworkListener;
 import com.app.mychat.utils.interfaces.SidebarEventListener;
 import com.app.mychat.utils.interfaces.WindowEventListener;
+import static com.app.mychat.utils.classes.backend.KeyValues.*;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
@@ -82,16 +81,24 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
     }
 
     @Override
-    public void clientListRecieved(ArrayList<String> activeUsers, ArrayList<String> inactiveUsers) {
+    public void clientListRecieved(ArrayList<HashMap<String, Object>> activeUsers, ArrayList<HashMap<String, Object>> inactiveUsers) {
         Platform.runLater(() -> {
             vBoxInactive.getChildren().clear();
             vBoxActive.getChildren().clear();
-            for (String userName : activeUsers){
-                Person person = new Person(userName, Person.STATUS_ACTIVE);
+            for (HashMap<String, Object> user : activeUsers){
+                String firstName = (String) user.get(KEY_FIRST_NAME);
+                String lastName =(String) user.get(KEY_LAST_NAME);
+                String email = (String) user.get(KEY_EMAIL);
+                String userName = (String) user.get(KEY_USERNAME);
+                Person person = new Person(firstName, lastName, email, userName, Person.STATUS_ACTIVE);
                 appendToActiveUsersListSection(person);
             }
-            for (String userName : inactiveUsers){
-                Person person = new Person(userName, Person.STATUS_INACTIVE);
+            for (HashMap<String, Object> user : inactiveUsers){
+                String firstName = (String) user.get(KEY_FIRST_NAME);
+                String lastName =(String) user.get(KEY_LAST_NAME);
+                String email = (String) user.get(KEY_EMAIL);
+                String userName = (String) user.get(KEY_USERNAME);
+                Person person = new Person(firstName, lastName, email, userName, Person.STATUS_INACTIVE);
                 appendToInactiveUsersListSection(person);
             }
         });
