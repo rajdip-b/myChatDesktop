@@ -45,9 +45,7 @@ public class CredentialNetwork {
                     HashMap<String, Object> m = (HashMap<String, Object>) objectInputStream.readObject();
                     int responseCode = getResponseCode(m);
                     if (responseCode == KeyValues.RESPONSE_CODE_FAILURE) {
-                        System.out.println("here");
                         networkListener.onErrorWhileOperation((String) m.get(KeyValues.KEY_RESPONSE_MESSAGE));
-                        System.out.println("In err");
                     }
                     else if (responseCode == KeyValues.RESPONSE_CODE_SUCCESS) {
                         networkListener.onOperationSuccessful("Login successful!", message.get(KeyValues.KEY_USERNAME).toString());

@@ -50,20 +50,45 @@ public class MessageGenerator {
         return msg;
     }
 
-    public static HashMap<String, Object> generatePasswordRequestMessage(String username){
+    public static HashMap<String, Object> generateEditAccountWithPasswordAndWithUsernameRequestMessage(String username, String firstName, String lastName, String password, String email){
         HashMap<String, Object> msg = new HashMap<>();
-        msg.put(KEY_QUERY, QUERY_REQUEST_PASSWORD);
-        msg.put(KEY_USERNAME, username);
-        return msg;
-    }
-
-    public static HashMap<String, Object> generateEditAccountRequestMessage(String username, String firstName, String lastName, String password){
-        HashMap<String, Object> msg = new HashMap<>();
-        msg.put(KEY_QUERY, QUERY_EDIT_ACCOUNT);
+        msg.put(KEY_QUERY, QUERY_EDIT_ACCOUNT_WITH_PASSWORD_AND_WITH_USERNAME);
         msg.put(KEY_USERNAME, username);
         msg.put(KEY_FIRST_NAME, firstName);
         msg.put(KEY_LAST_NAME, lastName);
         msg.put(KEY_PASSWORD, password);
+        msg.put(KEY_EMAIL, email);
+        return msg;
+    }
+
+    public static HashMap<String, Object> generateEditAccountWithoutPasswordAndWithUsernameRequestMessage(String username, String firstName, String lastName, String email){
+        HashMap<String, Object> msg = new HashMap<>();
+        msg.put(KEY_QUERY, QUERY_EDIT_ACCOUNT_WITHOUT_PASSWORD_AND_WITH_USERNAME);
+        msg.put(KEY_USERNAME, username);
+        msg.put(KEY_FIRST_NAME, firstName);
+        msg.put(KEY_LAST_NAME, lastName);
+        msg.put(KEY_EMAIL, email);
+        return msg;
+    }
+
+    public static HashMap<String, Object> generateEditAccountWithPasswordAndWithoutUsernameRequestMessage(String username, String password, String firstName, String lastName, String email){
+        HashMap<String, Object> msg = new HashMap<>();
+        msg.put(KEY_QUERY, QUERY_EDIT_ACCOUNT_WITH_PASSWORD_AND_WITHOUT_USERNAME);
+        msg.put(KEY_USERNAME, username);
+        msg.put(KEY_PASSWORD, password);
+        msg.put(KEY_FIRST_NAME, firstName);
+        msg.put(KEY_LAST_NAME, lastName);
+        msg.put(KEY_EMAIL, email);
+        return msg;
+    }
+
+    public static HashMap<String, Object> generateEditAccountWithoutPasswordAndWithoutUsernameRequestMessage(String username, String firstName, String lastName, String email){
+        HashMap<String, Object> msg = new HashMap<>();
+        msg.put(KEY_QUERY, QUERY_EDIT_ACCOUNT_WITHOUT_PASSWORD_AND_WITHOUT_USERNAME);
+        msg.put(KEY_USERNAME, username);
+        msg.put(KEY_FIRST_NAME, firstName);
+        msg.put(KEY_LAST_NAME, lastName);
+        msg.put(KEY_EMAIL, email);
         return msg;
     }
 

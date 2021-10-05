@@ -78,4 +78,14 @@ public class Layout {
         return root;
     }
 
+    public Parent getPersonDetailContainerLayout() {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fragments/PersonDetailContainer.fxml")));
+        } catch (IOException e) {
+            System.exit(1);
+        }
+        return root;
+    }
+
 }

@@ -1,5 +1,7 @@
 package com.app.mychat.controller;
 
+import com.app.mychat.utils.classes.backend.Misc;
+import com.app.mychat.utils.classes.backend.UserDetails;
 import com.app.mychat.utils.classes.ui.Layout;
 import com.app.mychat.utils.classes.ui.UserInterface;
 import com.app.mychat.utils.interfaces.SidebarEventListener;
@@ -25,6 +27,11 @@ public class SidebarController {
         SidebarController.sidebarEventListener = sidebarEventListener;
     }
 
+    @FXML
+    public void initialize(){
+        lblUsername.setText(UserDetails.userName);
+    }
+
     // Darkens the label upon which the mouse enters
     @FXML
     public void onMouseEntered(MouseEvent mouseEvent){
@@ -43,12 +50,19 @@ public class SidebarController {
     @FXML
     public void onEditAccountClicked(MouseEvent mouseEvent){
         UserInterface.getEditAccountStage(new Layout().getEditAccountLayout()).show();
+        EditAccountController.addSidebarEventListener(sidebarEventListener);
     }
 
     // Account will be deleted
     @FXML
     public void onDeleteAccountClicked(MouseEvent mouseEvent){
-
+        Misc.getConfirmationAlert("Are you sure you want to delete your account?").showAndWait().ifPresent(new Consumer<ButtonType>() {
+            @Override
+            public void accept(ButtonType buttonType) {
+                if (buttonType == ButtonType.YES)
+                    sidebarEventListener.onAccountDeleteRequested();
+            }
+        });
     }
 
     //Logouts the present logged in user

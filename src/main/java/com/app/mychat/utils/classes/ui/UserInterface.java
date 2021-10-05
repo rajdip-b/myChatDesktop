@@ -1,7 +1,7 @@
 package com.app.mychat.utils.classes.ui;
 
+import com.app.mychat.utils.interfaces.SidebarEventListener;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -9,10 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
 
 public class UserInterface {
 
@@ -49,23 +47,47 @@ public class UserInterface {
         stage.setTitle("myChat - Edit Account");
         stage.setScene(new Scene(layout));
         stage.setResizable(false);
-        stage.setOnCloseRequest(event -> {
-            Platform.exit();
-            System.exit(1);
-        });
         return stage;
     }
 
-    public static AnchorPane getPersonContainerPane(String person, String status, Parent layout){
-        Label txtPerson = (Label) layout.getChildrenUnmodifiable().get(0);
-        Text txtStatus = (Text) layout.getChildrenUnmodifiable().get(1);
+    public static AnchorPane getPersonContainerPane(String username, String firstName, String lastName, String email, String status, Parent layout, SidebarEventListener sidebarEventListener){
+        Label lblUsername = (Label) layout.getChildrenUnmodifiable().get(0);
+        Label lblStatus = (Label) layout.getChildrenUnmodifiable().get(1);
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.setPrefWidth(238);
         anchorPane.setPrefHeight(60);
-        txtPerson.setText(person);
-        txtStatus.setText(status);
-        anchorPane.getChildren().add(txtPerson);
-        anchorPane.getChildren().add(txtStatus);
+        lblUsername.setText(username);
+        lblStatus.setText(status);
+        anchorPane.getChildren().add(lblUsername);
+        anchorPane.getChildren().add(lblStatus);
+        anchorPane.setOnMouseEntered(event -> {
+            anchorPane.setStyle("-fx-background-color: rgb(214, 214, 214)");
+        });
+        anchorPane.setOnMouseExited(event -> {
+            anchorPane.setStyle("-fx-background-color: rgb(243, 243, 243)");
+        });
+        anchorPane.setOnMouseClicked(event -> {
+            sidebarEventListener.onPersonContainerClicked(UserInterface.getPersonDetailContainerPane(username, firstName, lastName, email, status, new Layout().getPersonDetailContainerLayout()));
+        });
+        return anchorPane;
+    }
+
+    public static AnchorPane getPersonDetailContainerPane(String username, String firstName, String lastName, String email, String status, Parent layout){
+        Label lblUserName = (Label) layout.getChildrenUnmodifiable().get(0);
+        Label lblStatus = (Label) layout.getChildrenUnmodifiable().get(1);
+        Label lblName = (Label) layout.getChildrenUnmodifiable().get(2);
+        Label lblEmail = (Label) layout.getChildrenUnmodifiable().get(3);
+        AnchorPane anchorPane = new AnchorPane();
+        anchorPane.setPrefWidth(300);
+        anchorPane.setPrefHeight(617);
+        lblUserName.setText(username);
+        lblStatus.setText(status);
+        lblName.setText(firstName+" "+lastName);
+        lblEmail.setText(email);
+        anchorPane.getChildren().add(lblUserName);
+        anchorPane.getChildren().add(lblStatus);
+        anchorPane.getChildren().add(lblName);
+        anchorPane.getChildren().add(lblEmail);
         return anchorPane;
     }
 

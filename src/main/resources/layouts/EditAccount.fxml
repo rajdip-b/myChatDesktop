@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="446.0" prefWidth="649.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.mychat.controller.EditAccount">
+<AnchorPane prefHeight="446.0" prefWidth="649.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.mychat.controller.EditAccountController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" prefHeight="59.0" prefWidth="234.0" text="Edit Account">
          <font>
@@ -90,6 +89,6 @@
          </children>
       </VBox>
       <Button layoutX="444.0" layoutY="393.0" mnemonicParsing="false" onAction="#onApplyClicked" prefHeight="43.0" prefWidth="112.0" text="Apply" />
-      <Label layoutX="28.0" layoutY="397.0" prefHeight="36.0" prefWidth="281.0" text="Leave password fields empty for keeping the same password" wrapText="true" />
+      <Label layoutX="28.0" layoutY="397.0" prefHeight="36.0" prefWidth="281.0" text="Leave fields empty for keeping the same value." wrapText="true" />
    </children>
 </AnchorPane>

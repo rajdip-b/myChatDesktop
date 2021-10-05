@@ -1,5 +1,6 @@
 package com.app.mychat.utils.classes.ui;
 
+import com.app.mychat.utils.interfaces.SidebarEventListener;
 import javafx.scene.layout.AnchorPane;
 
 public class Person {
@@ -15,12 +16,12 @@ public class Person {
     private String lastName;
     private String email;
 
-    public Person(String firstName, String lastName, String email, String username, String status) {
+    public Person(String firstName, String lastName, String email, String username, String status, SidebarEventListener sidebarEventListener) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        anchorPane = UserInterface.getPersonContainerPane(username, status, new Layout().getPersonContainerLayout());
+        anchorPane = UserInterface.getPersonContainerPane(username, firstName, lastName, email, status, new Layout().getPersonContainerLayout(), sidebarEventListener);
     }
 
     public AnchorPane getPersonUI(){

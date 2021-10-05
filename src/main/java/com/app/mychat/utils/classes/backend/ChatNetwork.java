@@ -55,7 +55,7 @@ public class ChatNetwork {
                 }
             }
         }catch(IOException e){
-            e.printStackTrace();
+//            e.printStackTrace();
             chatNetworkListener.serverUnreachable("Disconnected");
         }catch(ClassNotFoundException e){
             System.exit(1);
@@ -63,12 +63,19 @@ public class ChatNetwork {
     }
 
     private void resolveMessage(HashMap<String, Object> message){
-        int queryCode = (Integer)message.get(KeyValues.KEY_QUERY);
+        int queryCode = Misc.getQueryCode(message);
         switch (queryCode){
             case KeyValues.QUERY_CLIENT_LIST -> resolveResponseClientList(message);
             case KeyValues.QUERY_SEND_MESSAGE -> resolveResponseTextMessage(message);
             case KeyValues.QUERY_HANDSHAKE -> resolveResponseHandshake(message);
+            case KeyValues.QUERY_EDIT_ACCOUNT -> resolveResponseEditAccount(message);
         }
+    }
+
+    private void resolveResponseEditAccount(HashMap<String, Object> message){
+        int responseCode = (Integer) message.get(KeyValues.KEY_RESPONSE_CODE);
+        String responseMessage = (String) message.get(KeyValues.KEY_RESPONSE_MESSAGE);
+        chatNetworkListener.editAccountResponseReceived(responseCode, responseMessage);
     }
 
     private void resolveResponseClientList(HashMap<String, Object> message){

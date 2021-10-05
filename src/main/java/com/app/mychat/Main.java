@@ -15,7 +15,8 @@ public class Main extends Application implements WindowEventListener {
     private static Stage currentStage = null;
 
     public static void main(String[] args) {
-        System.setProperty("javax.net.ssl.trustStore", "src/main/java/myChatTrustStore.jts");
+//        System.setProperty("javax.net.ssl.trustStore", "src/main/java/myChatTrustStore.jts");
+        System.setProperty("javax.net.ssl.trustStore", "myChatTrustStore.jts");
         System.setProperty("javax.net.ssl.trustStorePassword", "cPPMq4IXThdRK1gf");
         launch(args);
     }
@@ -70,4 +71,5 @@ public class Main extends Application implements WindowEventListener {
     public void onSidebarClosed() {
         currentStage.setWidth(currentStage.getWidth()-300);
     }
+
 }
