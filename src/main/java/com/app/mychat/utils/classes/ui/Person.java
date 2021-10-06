@@ -1,6 +1,7 @@
 package com.app.mychat.utils.classes.ui;
 
 import com.app.mychat.utils.interfaces.SidebarEventListener;
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
@@ -31,7 +32,6 @@ public class Person {
     }
 
     public void setStatus(String status){
-        System.out.println("Setting status: "+status);
         this.status = status;
         lblStatus.setText(status);
     }

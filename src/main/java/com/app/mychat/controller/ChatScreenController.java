@@ -231,7 +231,6 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
     private void appendToMessagesSection(Message message){
         AnchorPane anchorPane = message.getMessageUI();
         vBoxMessages.getChildren().add(anchorPane);
-//        msgScrollPane.setVvalue(2.0);
     }
 
     private void test(){
@@ -239,12 +238,10 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
             if (newValue.equals("")) {
                 UserDetails.self.setStatus(Person.STATUS_ACTIVE);
                 chatNetwork.sendMessage(MessageGenerator.generateTypingStatusUpdateMessage(UserDetails.userName, TYPING_STATUS_OFF));
-                System.out.println("Active");
             }
             else if (UserDetails.self.getStatus().equals(Person.STATUS_ACTIVE)) {
                 UserDetails.self.setStatus(Person.STATUS_TYPING);
                 chatNetwork.sendMessage(MessageGenerator.generateTypingStatusUpdateMessage(UserDetails.userName, TYPING_STATUS_ON));
-                System.out.println("Typing");
             }
         });
     }
