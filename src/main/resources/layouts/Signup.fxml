@@ -1,58 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.QuadCurve?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="540.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.mychat.controller.SignupGUIController">
+<AnchorPane prefHeight="620.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.mychat.controller.SignupGUIController">
    <children>
-      <Label layoutX="75.0" layoutY="54.0" prefHeight="54.0" prefWidth="125.0" style="-fx-font-weight: 700;" text="Sign Up" textFill="#0071d9">
+      <Label layoutX="77.0" layoutY="66.0" prefHeight="54.0" prefWidth="125.0" style="-fx-font-weight: 700;" text="Sign Up" textFill="#0071d9">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="txtFirstName" layoutX="75.0" layoutY="156.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="228.0" promptText="First name">
+      <Rectangle arcHeight="22.0" arcWidth="22.0" blendMode="MULTIPLY" fill="WHITE" height="42.0" layoutX="75.0" layoutY="156.0" stroke="#6c90ff" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="2.0" width="228.0">
+         <effect>
+            <DropShadow height="9.77" radius="3.1925" spread="0.07" width="5.0" />
+         </effect>
+      </Rectangle>
+      <TextField fx:id="txtFirstName" layoutX="86.0" layoutY="160.0" onKeyPressed="#onKeyPressed" pickOnBounds="false" prefHeight="34.0" prefWidth="206.0" promptText="First name" style="-fx-background-color: -fx-control-inner-background;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label fx:id="lblErrFirstName" layoutX="77.0" layoutY="201.0" prefHeight="16.0" prefWidth="228.0" textFill="RED" />
-      <TextField fx:id="txtLastName" layoutX="317.0" layoutY="156.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="238.0" promptText="Last name">
+      <Rectangle arcHeight="22.0" arcWidth="22.0" blendMode="MULTIPLY" fill="WHITE" height="42.0" layoutX="315.0" layoutY="155.0" stroke="#6c90ff" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="2.0" width="238.0">
+         <effect>
+            <DropShadow height="9.77" radius="3.1925" spread="0.07" width="5.0" />
+         </effect>
+      </Rectangle>
+      <TextField fx:id="txtLastName" cache="true" layoutX="332.0" layoutY="159.0" onKeyPressed="#onKeyPressed" prefHeight="34.0" prefWidth="206.0" promptText="Last name" scaleShape="false" style="-fx-background-color: -fx-control-inner-background;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label fx:id="lblErrLastName" layoutX="316.0" layoutY="201.0" prefHeight="16.0" prefWidth="228.0" textFill="RED" />
-      <TextField fx:id="txtEmail" layoutX="77.0" layoutY="236.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="480.0" promptText="Email ">
+      <Rectangle arcHeight="22.0" arcWidth="22.0" fill="WHITE" height="46.0" layoutX="73.0" layoutY="234.0" stroke="#6c90ff" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="2.0" width="488.0">
+         <effect>
+            <DropShadow height="9.77" radius="3.1925" spread="0.07" width="5.0" />
+         </effect>
+      </Rectangle>
+      <TextField fx:id="txtEmail" layoutX="86.0" layoutY="236.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="462.0" promptText="Email " style="-fx-background-color: white;">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <rotationAxis>
+            <Point3D x="9.0" y="1.0" z="1.0" />
+         </rotationAxis>
+      </TextField>
+      <Rectangle arcHeight="22.0" arcWidth="22.0" fill="WHITE" height="46.0" layoutX="73.0" layoutY="314.0" stroke="#6c90ff" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="2.0" width="490.0">
+         <effect>
+            <DropShadow height="9.77" radius="3.1925" spread="0.07" width="5.0" />
+         </effect>
+      </Rectangle>
+      <TextField fx:id="txtAlias" layoutX="87.0" layoutY="316.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="462.0" promptText="Alias" style="-fx-background-color: -fx-control-inner-background;" AnchorPane.bottomAnchor="275.0" AnchorPane.leftAnchor="87.0" AnchorPane.rightAnchor="277.0" AnchorPane.topAnchor="316.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label fx:id="lblErrEmail" layoutX="75.0" layoutY="278.0" prefHeight="16.0" prefWidth="480.0" textFill="RED" />
-      <TextField fx:id="txtAlias" layoutX="77.0" layoutY="316.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="480.0" promptText="Alias">
+      <Rectangle arcHeight="22.0" arcWidth="22.0" fill="#0077d9" height="42.0" layoutX="402.0" layoutY="474.0" stroke="#0071d9" strokeLineCap="BUTT" strokeLineJoin="ROUND" width="153.0">
+         <effect>
+            <DropShadow height="9.77" radius="3.1925" spread="0.07" width="5.0" />
+         </effect>
+      </Rectangle>
+
+      <Button fx:id="btnRegister" layoutX="405.0" layoutY="477.0" mnemonicParsing="false" onAction="#onSignupClicked" prefHeight="34.0" prefWidth="147.0" style="-fx-background-color: #0071d9;" text="REGISTER" textFill="WHITE">
          <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <Label fx:id="lblErrAlias" layoutX="77.0" layoutY="358.0" prefHeight="16.0" prefWidth="480.0" textFill="RED" />
-      <PasswordField fx:id="txtPassword" layoutX="75.0" layoutY="397.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="228.0" promptText="Password">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </PasswordField>
-      <PasswordField fx:id="txtConfirmPassword" layoutX="319.0" layoutY="397.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="238.0" promptText="Confirm password">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </PasswordField>
-      <Label fx:id="lblErrPassword" layoutX="77.0" layoutY="439.0" prefHeight="16.0" prefWidth="480.0" textFill="RED" />
-      <Button fx:id="btnRegister" layoutX="403.0" layoutY="474.0" mnemonicParsing="false" onAction="#onSignupClicked" prefHeight="42.0" prefWidth="154.0" style="-fx-background-color: rgb(19, 155, 240);" text="REGISTER" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
+            <Font name="SansSerif Regular" size="17.0" />
          </font>
       </Button>
+      <Label fx:id="lblErrFirstName" layoutX="75.0" layoutY="201.0" prefHeight="16.0" prefWidth="228.0" textFill="RED" />
+      <Label fx:id="lblErrLastName" layoutX="316.0" layoutY="201.0" prefHeight="16.0" prefWidth="228.0" textFill="RED" />
+      <Label fx:id="lblErrEmail" layoutX="75.0" layoutY="278.0" prefHeight="16.0" prefWidth="480.0" textFill="RED" />
+      <Label fx:id="lblErrAlias" layoutX="77.0" layoutY="358.0" prefHeight="16.0" prefWidth="480.0" textFill="RED" />
+      <Label fx:id="lblErrPassword" layoutX="77.0" layoutY="439.0" prefHeight="16.0" prefWidth="480.0" textFill="RED" />
+      <Rectangle arcHeight="22.0" arcWidth="22.0" fill="WHITE" height="44.0" layoutX="69.0" layoutY="399.0" stroke="#6c90ff" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="2.0" width="238.0">
+         <effect>
+            <DropShadow height="9.77" radius="3.1925" spread="0.07" width="5.0" />
+         </effect>
+      </Rectangle>
+      <PasswordField fx:id="txtPassword" layoutX="85.0" layoutY="400.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="206.0" promptText="Password" style="-fx-background-color: -fx-control-inner-background;">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </PasswordField>
+      <Rectangle arcHeight="22.0" arcWidth="22.0" fill="WHITE" height="44.0" layoutX="316.0" layoutY="398.0" stroke="#6c90ff" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="2.0" width="238.0">
+         <effect>
+            <DropShadow height="9.77" radius="3.1925" spread="0.07" width="5.0" />
+         </effect>
+      </Rectangle>
+      <PasswordField fx:id="txtConfirmPassword" layoutX="331.0" layoutY="399.0" onKeyPressed="#onKeyPressed" prefHeight="41.0" prefWidth="206.0" promptText="Confirm password" style="-fx-background-color: -fx-control-inner-background;">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </PasswordField>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="632.0" layoutX="598.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="228.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.38823530077934265" green="0.7372549176216125" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.8235294222831726" green="0.5764706134796143" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <QuadCurve controlX="-17.999996185302734" controlY="-200.00003051757812" endX="151.60000610351562" endY="0.81890869140625" layoutX="50.0" layoutY="632.0" startX="-99.60000610351562" startY="-56.79998779296875" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.38823530077934265" green="0.7372549176216125" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.8235294222831726" green="0.5764706134796143" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </QuadCurve>
+      <QuadCurve controlX="242.00003051757812" controlY="-186.19998168945312" endX="255.60000610351562" endY="-30.76220703125" layoutX="-18.0" layoutY="663.0" startX="-99.59999084472656" startY="-30.76220703125" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.5699999928474426" green="1.0" blue="0.978417158126831" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.8703703880310059" green="0.6888889074325562" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </QuadCurve>
    </children>
 </AnchorPane>
