@@ -2,6 +2,11 @@ package com.app.mychat.utils.classes.update;
 
 import java.io.File;
 import java.net.URL;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.IOException;
+import java.net.URL;
 
 public class Update extends UpdateChecker {
 
