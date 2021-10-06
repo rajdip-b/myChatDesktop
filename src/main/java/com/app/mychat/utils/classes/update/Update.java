@@ -16,6 +16,7 @@ public class Update extends UpdateChecker {
 
     public static void main(String[] args) {
         new UpdateChecker(new GitHub("v2.0.0")).checkForVersion();
+        Object github;
         Update update=new Update(GitHub github);
         update.isLatest();
         String s_url="https://github.com/rajdip-b/myChatDesktop/releases/tag/";
