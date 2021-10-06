@@ -10,5 +10,6 @@ public interface ChatNetworkListener {
     void userDetailsReceived(HashMap<String, Object> userDetails);
     void clientListRecieved(ArrayList<HashMap<String, Object>> activeUsers, ArrayList<HashMap<String, Object>> inactiveUsers);
     void editAccountResponseReceived(int responseCode, String responseMessage);
+    void onTypingUpdateReceived(String username, String status);
 
 }

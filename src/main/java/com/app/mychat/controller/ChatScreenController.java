@@ -47,6 +47,7 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
         sidebarPane.setPrefWidth(0);
         msgScrollPane.vvalueProperty().bind(vBoxMessages.heightProperty());
         sidebar = UserInterface.getSidebarPane(new Layout().getSidebarLayout());
+        test();
         chatNetwork = new ChatNetwork(this);
         try {
             Thread.sleep(100);
@@ -124,6 +125,7 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
                 String email = (String) user.get(KEY_EMAIL);
                 String userName = (String) user.get(KEY_USERNAME);
                 Person person = new Person(firstName, lastName, email, userName, Person.STATUS_ACTIVE, this);
+                PersonHolder.addPerson(person);
                 appendToActiveUsersListSection(person);
             }
             for (HashMap<String, Object> user : inactiveUsers){
@@ -134,6 +136,7 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
                 Person person = new Person(firstName, lastName, email, userName, Person.STATUS_INACTIVE, this);
                 appendToInactiveUsersListSection(person);
             }
+            UserDetails.self = PersonHolder.getPersonByUsername(UserDetails.userName);
         });
     }
 
@@ -205,6 +208,13 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
     }
 
     @Override
+    public void onTypingUpdateReceived(String username, String status) {
+        Platform.runLater(() -> {
+            PersonHolder.getPersonByUsername(username).setStatus(status);
+        });
+    }
+
+    @Override
     public void onCheckUpdateRequested() {
     }
 
@@ -223,4 +233,20 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
         vBoxMessages.getChildren().add(anchorPane);
 //        msgScrollPane.setVvalue(2.0);
     }
+
+    private void test(){
+        txtMessage.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("")) {
+                UserDetails.self.setStatus(Person.STATUS_ACTIVE);
+                chatNetwork.sendMessage(MessageGenerator.generateTypingStatusUpdateMessage(UserDetails.userName, TYPING_STATUS_OFF));
+                System.out.println("Active");
+            }
+            else if (UserDetails.self.getStatus().equals(Person.STATUS_ACTIVE)) {
+                UserDetails.self.setStatus(Person.STATUS_TYPING);
+                chatNetwork.sendMessage(MessageGenerator.generateTypingStatusUpdateMessage(UserDetails.userName, TYPING_STATUS_ON));
+                System.out.println("Typing");
+            }
+        });
+    }
+
 }

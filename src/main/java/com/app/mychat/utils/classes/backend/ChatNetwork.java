@@ -1,5 +1,6 @@
 package com.app.mychat.utils.classes.backend;
 
+import com.app.mychat.utils.classes.ui.Person;
 import com.app.mychat.utils.interfaces.ChatNetworkListener;
 
 import javax.net.ssl.SSLSocket;
@@ -69,6 +70,7 @@ public class ChatNetwork {
             case KeyValues.QUERY_SEND_MESSAGE -> resolveResponseTextMessage(message);
             case KeyValues.QUERY_HANDSHAKE -> resolveResponseHandshake(message);
             case KeyValues.QUERY_EDIT_ACCOUNT -> resolveResponseEditAccount(message);
+            case KeyValues.QUERY_TYPING_STATUS_UPDATE -> resolveTypingUpdateMessage(message);
         }
     }
 
@@ -98,6 +100,13 @@ public class ChatNetwork {
             chatNetworkListener.messageReceived(existingMessage.get(0), existingMessage.get(1));
         }
         chatNetworkListener.userDetailsReceived(userDetails);
+    }
+
+    private void resolveTypingUpdateMessage(HashMap<String, Object> message){
+        String username = (String) message.get(KeyValues.KEY_USERNAME);
+        int status = (Integer) message.get(KeyValues.KEY_TYPING_STATUS);
+        String stringStatus = (status == KeyValues.TYPING_STATUS_ON) ? Person.STATUS_TYPING : Person.STATUS_ACTIVE;
+        chatNetworkListener.onTypingUpdateReceived(username, stringStatus);
     }
 
     public synchronized void sendMessage(HashMap<String, Object> message){

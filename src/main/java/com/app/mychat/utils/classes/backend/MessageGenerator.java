@@ -99,4 +99,12 @@ public class MessageGenerator {
         return msg;
     }
 
+    public static HashMap<String, Object> generateTypingStatusUpdateMessage(String username, int status){
+        HashMap<String, Object> msg = new HashMap<>();
+        msg.put(KEY_QUERY, QUERY_TYPING_STATUS_UPDATE);
+        msg.put(KEY_USERNAME, username);
+        msg.put(KEY_TYPING_STATUS, status);
+        return msg;
+    }
+
 }
