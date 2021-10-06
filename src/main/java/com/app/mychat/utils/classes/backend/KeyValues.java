@@ -15,6 +15,7 @@ public class KeyValues {
     public static final String KEY_INACTIVE_USERS_LIST = "inactive_users";
     public static final String KEY_EXISTING_MESSAGES = "existing_messages";
     public static final String KEY_USER_DETAILS = "user_details";
+    public static final String KEY_LATEST_VERSION_ID = "latest_version_id";
 
     public static final int RESPONSE_CODE_SUCCESS = 1; // Used when some operation is successful
     public static final int RESPONSE_CODE_FAILURE = 2; // Used when some operation is successful
