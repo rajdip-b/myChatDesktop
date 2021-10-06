@@ -94,7 +94,7 @@ public class ChatNetwork {
     private void resolveResponseHandshake(HashMap<String, Object> message){
         ArrayList<ArrayList <String>> existingMessages = (ArrayList<ArrayList<String>>) message.get(KeyValues.KEY_EXISTING_MESSAGES);
         HashMap<String, Object> userDetails = (HashMap<String, Object>) message.get(KeyValues.KEY_USER_DETAILS);
-        UserDetails.latestVersionID = (String) message.get(KeyValues.KEY_LATEST_VERSION_ID);
+        UserDetails.latestVersionID = (Long) message.get(KeyValues.KEY_LATEST_VERSION_ID);
         for (ArrayList<String> existingMessage : existingMessages){
             chatNetworkListener.messageReceived(existingMessage.get(0), existingMessage.get(1));
         }

@@ -6,7 +6,7 @@ public class UserDetails {
     public static String firstName;
     public static String lastName;
     public static String email;
-    public static String clientVersionID = "v2.0.0";
-    public static String latestVersionID;
+    public static long clientVersionID = 200;
+    public static long latestVersionID;
 
 }
