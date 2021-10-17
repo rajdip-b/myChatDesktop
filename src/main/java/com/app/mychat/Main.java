@@ -16,14 +16,19 @@ public class Main extends Application implements WindowEventListener {
 
     public static void main(String[] args) {
 //        System.setProperty("javax.net.ssl.trustStore", "src/main/java/myChatTrustStore.jts");
-        System.setProperty("javax.net.ssl.trustStore", "myChatTrustStore.jts");
-        System.setProperty("javax.net.ssl.trustStorePassword", "cPPMq4IXThdRK1gf");
+        //---------------------------------------------------------------------------------//
+//        System.setProperty("javax.net.ssl.trustStore", "myChatTrustStore.jts");
+//        System.setProperty("javax.net.ssl.trustStorePassword", "cPPMq4IXThdRK1gf");
+        //---------------------------------------------------------------------------------//
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        loadLoginScreen();
+//      ----------------------------------//
+//        loadLoginScreen();
+        //----------------------------------//
+        loadChatScreen();
     }
 
     private void loadLoginScreen(){
