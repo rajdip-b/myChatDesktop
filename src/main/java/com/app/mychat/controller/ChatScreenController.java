@@ -1,19 +1,16 @@
 package com.app.mychat.controller;
 
 import com.app.mychat.utils.classes.backend.*;
-import com.app.mychat.utils.classes.ui.Layout;
-import com.app.mychat.utils.classes.ui.Message;
-import com.app.mychat.utils.classes.ui.Person;
-import com.app.mychat.utils.classes.ui.UserInterface;
+import com.app.mychat.utils.classes.ui.*;
 import com.app.mychat.utils.interfaces.ChatNetworkListener;
 import com.app.mychat.utils.interfaces.SidebarEventListener;
-import static com.app.mychat.utils.classes.backend.KeyValues.*;
-
 import com.app.mychat.utils.interfaces.WindowEventListener;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -21,6 +18,8 @@ import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static com.app.mychat.utils.classes.backend.KeyValues.*;
 
 public class ChatScreenController implements ChatNetworkListener, SidebarEventListener {
 
@@ -31,12 +30,21 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
     @FXML private VBox vBoxInactive;
     @FXML private TextArea txtMessage;
     @FXML private AnchorPane sidebarPane;
+    @FXML private AnchorPane base;
     @FXML private ScrollPane msgScrollPane;
+    @FXML private ScrollPane actv;
+    @FXML private ScrollPane inactv;
+    @FXML private Button send;
+
+    private final Animations animations;
 
     private boolean isSidebarOpen;
     private AnchorPane sidebar;
     private static WindowEventListener windowEventListener;
 
+    public ChatScreenController(){
+        animations = new Animations();
+    }
     public static void addWindowEventListener(WindowEventListener windowEventListener) {
         ChatScreenController.windowEventListener = windowEventListener;
     }
@@ -60,6 +68,10 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
             e.printStackTrace();
         }
         chatNetwork.sendMessage(MessageGenerator.generateClientListRequestMessage(UserDetails.userName));
+        animations.setAnchorPaneAnimation(base);
+        animations.setScrollPaneAnimation(actv);
+        animations.setScrollPaneAnimation(inactv);
+        animations.setSendButtonAnimation(send);
     }
 
     @FXML
@@ -149,12 +161,9 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
         if (!isSidebarOpen){
             windowEventListener.onSidebarOpened();
             isSidebarOpen = true;
-            sidebarPane.getChildren().clear();
-            sidebarPane.getChildren().add(personContainer);
-        }else{
-            sidebarPane.getChildren().clear();
-            sidebarPane.getChildren().add(personContainer);
         }
+        sidebarPane.getChildren().clear();
+        sidebarPane.getChildren().add(personContainer);
     }
 
     @Override
@@ -189,18 +198,12 @@ public class ChatScreenController implements ChatNetworkListener, SidebarEventLi
     @Override
     public void editAccountResponseReceived(int responseCode, String responseMessage) {
         switch (responseCode){
-            case RESPONSE_CODE_SUCCESS -> {
-                Platform.runLater(() -> {
-                    Misc.getInformationAlert(responseMessage).showAndWait();
-                    Platform.exit();
-                    System.exit(1);
-                });
-            }
-            case RESPONSE_CODE_FAILURE -> {
-                Platform.runLater(() ->{
-                    Misc.getErrorAlert(responseMessage).show();
-                });
-            }
+            case RESPONSE_CODE_SUCCESS -> Platform.runLater(() -> {
+                Misc.getInformationAlert(responseMessage).showAndWait();
+                Platform.exit();
+                System.exit(1);
+            });
+            case RESPONSE_CODE_FAILURE -> Platform.runLater(() -> Misc.getErrorAlert(responseMessage).show());
         }
     }
 

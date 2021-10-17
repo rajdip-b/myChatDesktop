@@ -39,6 +39,8 @@ public class LoginGUIController implements CredentialNetworkListener {
     @FXML
     public void initialize(){
         animations.setButtonAnimation(btnLogin);
+        animations.setTextFieldAnimation(txtAlias);
+        animations.setPasswordFieldAnimation(txtPassword);
     }
 
     @FXML

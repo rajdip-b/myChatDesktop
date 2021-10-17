@@ -45,6 +45,12 @@ public class SignupGUIController implements CredentialNetworkListener {
     @FXML
     public void initialize(){
         animations.setButtonAnimation(btnRegister);
+        animations.setTextFieldAnimation(txtFirstName);
+        animations.setTextFieldAnimation(txtLastName);
+        animations.setTextFieldAnimation(txtEmail);
+        animations.setTextFieldAnimation(txtAlias);
+        animations.setPasswordFieldAnimation(txtPassword);
+        animations.setPasswordFieldAnimation(txtConfirmPassword);
     }
 
     @FXML

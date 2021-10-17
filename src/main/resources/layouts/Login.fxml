@@ -17,21 +17,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="506.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.app.mychat.controller.LoginGUIController">
-   <Rectangle arcHeight="5.0" arcWidth="5.0" height="546.0" layoutX="1.0" stroke="BLACK" strokeType="INSIDE"
-              strokeWidth="0.0" width="724.0">
+<AnchorPane prefHeight="506.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.mychat.controller.LoginGUIController">
+   <Rectangle arcHeight="5.0" arcWidth="5.0" height="546.0" layoutX="1.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="724.0">
       <fill>
          <LinearGradient endX="1.0" endY="1.0">
             <stops>
                <Stop>
                   <color>
-                     <Color red="0.49000000953674316" green="0.9616272449493408" blue="1.0"/>
+                     <Color red="0.49000000953674316" green="0.9616272449493408" blue="1.0" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color red="0.840010404586792" green="0.4277999997138977" blue="0.9300000071525574"/>
+                     <Color red="0.840010404586792" green="0.4277999997138977" blue="0.9300000071525574" />
                   </color>
                </Stop>
             </stops>
@@ -40,112 +38,92 @@
       <effect>
          <InnerShadow height="35.3" radius="8.325" width="0.0">
             <color>
-               <Color red="0.9894737005233765" green="0.9894737005233765" blue="0.9894737005233765"/>
+               <Color red="0.9894737005233765" green="0.9894737005233765" blue="0.9894737005233765" />
             </color>
          </InnerShadow>
       </effect>
    </Rectangle>
-   <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="ADD" fill="WHITE" height="441.0" layoutX="179.0" layoutY="63.0"
-              stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="372.0">
+   <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="ADD" fill="WHITE" height="441.0" layoutX="179.0" layoutY="63.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="372.0">
       <effect>
          <DropShadow blurType="GAUSSIAN" height="143.96" radius="48.0025" spread="0.11" width="50.05">
             <color>
-               <Color red="0.11999999731779099" green="0.11999999731779099" blue="0.11999999731779099"/>
+               <Color red="0.11999999731779099" green="0.11999999731779099" blue="0.11999999731779099" />
             </color>
          </DropShadow>
       </effect>
    </Rectangle>
-   <Rectangle arcHeight="22.0" arcWidth="15.0" fill="#0084ff00" height="40.0" layoutX="246.0" layoutY="187.0"
-              stroke="#7e99fa" strokeType="INSIDE" strokeWidth="1.5" style="visibility: 0;" width="230.0">
-   </Rectangle>
-   <TextField id="txtAlias" fx:id="txtAlias" layoutX="246.0" layoutY="185.0" onKeyPressed="#onKeyPressed"
-              prefHeight="43.0" prefWidth="230.0" promptText="Enter alias..."
-              style="-fx-background-color: -fx-inner-background;">
+   
+   <TextField id="txtAlias" fx:id="txtAlias" layoutX="246.0" layoutY="185.0" onKeyPressed="#onKeyPressed" prefHeight="43.0" prefWidth="230.0" promptText="Enter alias..." style="-fx-border-color: #7e99fa;">
       <font>
-         <Font name="SansSerif Regular" size="15.0"/>
+         <Font name="SansSerif Regular" size="15.0" />
       </font>
    </TextField>
 
-   <Rectangle arcHeight="22.0" arcWidth="15.0" fill="#0084ff00" height="43.0" layoutX="246.0" layoutY="261.0"
-              stroke="#7e99fa" strokeType="INSIDE" strokeWidth="1.5" style="visibility: 0;" width="230.0">
-   </Rectangle>
-   <PasswordField fx:id="txtPassword" layoutX="246.0" layoutY="262.0" onKeyPressed="#onKeyPressed" prefHeight="43.0"
-                  prefWidth="230.0" promptText="Enter Password..." style="-fx-background-color: fx-inner-background;">
+   <PasswordField fx:id="txtPassword" layoutX="246.0" layoutY="262.0" onKeyPressed="#onKeyPressed" prefHeight="43.0" prefWidth="230.0" promptText="Enter Password..." style="-fx-border-color: #7e99fa;">
       <font>
-         <Font name="SansSerif Regular" size="15.0"/>
+         <Font name="SansSerif Regular" size="15.0" />
       </font>
    </PasswordField>
 
-   <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#9c5eff" height="43.0" layoutX="248.0" layoutY="339.0"
-              stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="230.0"/>
-   <Button fx:id="btnLogin" alignment="CENTER" layoutX="251.0" layoutY="340.0" mnemonicParsing="false"
-           onAction="#onLoginClicked" prefHeight="40.0" prefWidth="222.0"
-           style="-fx-font-weight: 700; -fx-text-fill: white; -fx-background-color: #9c5eff;" text="LOG IN"
-           textAlignment="JUSTIFY" textFill="#330848" textOverrun="CENTER_ELLIPSIS">
+  <!-- <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#9c5eff" height="43.0" layoutX="248.0" layoutY="339.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="230.0" /> -->
+   <Button fx:id="btnLogin" alignment="CENTER" layoutX="251.0" layoutY="340.0" mnemonicParsing="false" onAction="#onLoginClicked" prefHeight="40.0" prefWidth="222.0" style="-fx-font-weight: 700; -fx-text-fill: white; -fx-background-color: #9c5eff;" text="LOG IN" textAlignment="JUSTIFY" textFill="#330848" textOverrun="CENTER_ELLIPSIS">
       <font>
-         <Font name="SansSerif Bold" size="16.0"/>
+         <Font name="SansSerif Bold" size="16.0" />
       </font>
    </Button>
-   <Text fill="#0b4dba" layoutX="222.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0"
-         style="-fx-font-weight: 700;" text="Log In" wrappingWidth="143.92950439453125">
+   <Text fill="#0b4dba" layoutX="222.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="Log In" wrappingWidth="143.92950439453125">
       <font>
-         <Font name="SansSerif Regular" size="25.0"/>
+         <Font name="SansSerif Regular" size="25.0" />
       </font>
    </Text>
-   <Label fx:id="lblErrAlias" layoutX="246.0" layoutY="228.0" prefHeight="24.0" prefWidth="230.0" textFill="RED"/>
-   <Label fx:id="lblErrPassword" layoutX="246.0" layoutY="305.0" prefHeight="24.0" prefWidth="230.0" textFill="RED"/>
+   <Label fx:id="lblErrAlias" layoutX="246.0" layoutY="228.0" prefHeight="24.0" prefWidth="230.0" textFill="RED" />
+   <Label fx:id="lblErrPassword" layoutX="246.0" layoutY="305.0" prefHeight="24.0" prefWidth="230.0" textFill="RED" />
 
-   <Hyperlink alignment="CENTER" layoutX="299.0" layoutY="414.0" onAction="#onCreateAccountClicked" prefHeight="22.0"
-              prefWidth="133.0" style="-fx-text-fill: #a20eec;" text="Create an account" textAlignment="CENTER"
-              textFill="#a20eec">
+   <Hyperlink alignment="CENTER" layoutX="299.0" layoutY="414.0" onAction="#onCreateAccountClicked" prefHeight="22.0" prefWidth="133.0" style="-fx-text-fill: #a20eec;" text="Create an account" textAlignment="CENTER" textFill="#a20eec">
       <font>
-         <Font name="SansSerif Regular" size="14.0"/>
+         <Font name="SansSerif Regular" size="14.0" />
       </font>
    </Hyperlink>
-   <QuadCurve controlX="106.80001831054688" controlY="-11.20001220703125" endX="-7.000030517578125"
-              endY="60.20001220703125" layoutX="186.0" layoutY="440.0" opacity="0.67" startX="-7.000030517578125"
-              startY="-86.20001220703125" stroke="BLACK" strokeLineJoin="BEVEL" strokeType="INSIDE" strokeWidth="0.0">
+   <QuadCurve controlX="106.80001831054688" controlY="-11.20001220703125" endX="-7.000030517578125" endY="60.20001220703125" layoutX="186.0" layoutY="440.0" opacity="0.67" startX="-7.000030517578125" startY="-86.20001220703125" stroke="BLACK" strokeLineJoin="BEVEL" strokeType="INSIDE" strokeWidth="0.0">
       <fill>
          <LinearGradient endX="1.0" endY="1.0" startY="1.0">
             <stops>
                <Stop>
                   <color>
-                     <Color red="0.5629629492759705" green="0.7887654304504395" blue="1.0"/>
+                     <Color red="0.5629629492759705" green="0.7887654304504395" blue="1.0" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color red="1.0" green="0.7481481432914734" blue="0.9916049242019653"/>
+                     <Color red="1.0" green="0.7481481432914734" blue="0.9916049242019653" />
                   </color>
                </Stop>
             </stops>
          </LinearGradient>
       </fill>
       <effect>
-         <Blend/>
+         <Blend />
       </effect>
    </QuadCurve>
-   <QuadCurve controlX="-123.80001831054688" controlY="-38.00001525878906" endX="-7.000030517578125"
-              endY="60.20001220703125" layoutX="558.0" layoutY="158.0" opacity="0.67" startX="-7.000030517578125"
-              startY="-86.20001220703125" stroke="BLACK" strokeLineJoin="BEVEL" strokeType="INSIDE" strokeWidth="0.0">
+   <QuadCurve controlX="-123.80001831054688" controlY="-38.00001525878906" endX="-7.000030517578125" endY="60.20001220703125" layoutX="558.0" layoutY="158.0" opacity="0.67" startX="-7.000030517578125" startY="-86.20001220703125" stroke="BLACK" strokeLineJoin="BEVEL" strokeType="INSIDE" strokeWidth="0.0">
       <fill>
          <LinearGradient endX="1.0">
             <stops>
                <Stop>
                   <color>
-                     <Color red="0.5629629492759705" green="0.7887654304504395" blue="1.0"/>
+                     <Color red="0.5629629492759705" green="0.7887654304504395" blue="1.0" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color red="0.6795985698699951" green="0.42239999771118164" blue="0.9599999785423279"/>
+                     <Color red="0.6795985698699951" green="0.42239999771118164" blue="0.9599999785423279" />
                   </color>
                </Stop>
             </stops>
          </LinearGradient>
       </fill>
       <effect>
-         <Blend/>
+         <Blend />
       </effect>
    </QuadCurve>
 </AnchorPane>

@@ -21,54 +21,62 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="22.0" arcWidth="22.0" blendMode="MULTIPLY" fill="WHITE" height="42.0" layoutX="75.0" layoutY="156.0" stroke="#6c90ff" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="2.0" width="228.0">
-         <effect>
-            <DropShadow height="9.77" radius="3.1925" spread="0.07" width="5.0" />
-         </effect>
-      </Rectangle>
-      <TextField fx:id="txtFirstName" layoutX="86.0" layoutY="160.0" onKeyPressed="#onKeyPressed" pickOnBounds="false" prefHeight="34.0" prefWidth="206.0" promptText="First name" style="-fx-background-color: -fx-control-inner-background;">
+
+      <TextField fx:id="txtFirstName" layoutX="86.0" layoutY="155.0" onKeyPressed="#onKeyPressed" pickOnBounds="false" prefHeight="42.0" prefWidth="206.0" promptText="First name" style="-fx-border-color: #7e99fa;">
          <font>
             <Font size="15.0" />
          </font>
-      </TextField>
-      <Rectangle arcHeight="22.0" arcWidth="22.0" blendMode="MULTIPLY" fill="WHITE" height="42.0" layoutX="315.0" layoutY="155.0" stroke="#6c90ff" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="2.0" width="238.0">
          <effect>
-            <DropShadow height="9.77" radius="3.1925" spread="0.07" width="5.0" />
+            <DropShadow height="6.7" radius="2.85" width="6.7">
+               <color>
+                  <Color red="0.7891358137130737" green="0.5481481552124023" blue="1.0" />
+               </color>
+            </DropShadow>
          </effect>
-      </Rectangle>
-      <TextField fx:id="txtLastName" cache="true" layoutX="332.0" layoutY="159.0" onKeyPressed="#onKeyPressed" prefHeight="34.0" prefWidth="206.0" promptText="Last name" scaleShape="false" style="-fx-background-color: -fx-control-inner-background;">
+      </TextField>
+
+      <TextField fx:id="txtLastName" cache="true" layoutX="331.0" layoutY="154.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="206.0" promptText="Last name" scaleShape="false" style="-fx-border-color: #7e99fa;">
          <font>
             <Font size="15.0" />
          </font>
-      </TextField>
-      <Rectangle arcHeight="22.0" arcWidth="22.0" fill="WHITE" height="46.0" layoutX="73.0" layoutY="234.0" stroke="#6c90ff" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="2.0" width="488.0">
          <effect>
-            <DropShadow height="9.77" radius="3.1925" spread="0.07" width="5.0" />
+            <DropShadow height="6.7" radius="2.85" width="6.7">
+               <color>
+                  <Color red="0.7891358137130737" green="0.5481481552124023" blue="1.0" />
+               </color>
+            </DropShadow>
          </effect>
-      </Rectangle>
-      <TextField fx:id="txtEmail" layoutX="86.0" layoutY="236.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="462.0" promptText="Email " style="-fx-background-color: white;">
+      </TextField>
+
+      <TextField fx:id="txtEmail" layoutX="86.0" layoutY="236.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="462.0" promptText="Email " style="-fx-border-color: #7e99fa;">
          <font>
             <Font size="15.0" />
          </font>
          <rotationAxis>
             <Point3D x="9.0" y="1.0" z="1.0" />
          </rotationAxis>
-      </TextField>
-      <Rectangle arcHeight="22.0" arcWidth="22.0" fill="WHITE" height="46.0" layoutX="73.0" layoutY="314.0" stroke="#6c90ff" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="2.0" width="490.0">
          <effect>
-            <DropShadow height="9.77" radius="3.1925" spread="0.07" width="5.0" />
+            <DropShadow height="6.7" radius="2.85" width="6.7">
+               <color>
+                  <Color red="0.7891358137130737" green="0.5481481552124023" blue="1.0" />
+               </color>
+            </DropShadow>
          </effect>
-      </Rectangle>
-      <TextField fx:id="txtAlias" layoutX="87.0" layoutY="316.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="462.0" promptText="Alias" style="-fx-background-color: -fx-control-inner-background;" AnchorPane.bottomAnchor="275.0" AnchorPane.leftAnchor="87.0" AnchorPane.rightAnchor="277.0" AnchorPane.topAnchor="316.0">
+      </TextField>
+
+      <TextField fx:id="txtAlias" layoutX="87.0" layoutY="316.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="462.0" promptText="Alias" style="-fx-border-color: #7e99fa;" AnchorPane.bottomAnchor="275.0" AnchorPane.leftAnchor="87.0" AnchorPane.rightAnchor="277.0" AnchorPane.topAnchor="316.0">
          <font>
             <Font size="15.0" />
          </font>
-      </TextField>
-      <Rectangle arcHeight="22.0" arcWidth="22.0" fill="#0077d9" height="42.0" layoutX="402.0" layoutY="474.0" stroke="#0071d9" strokeLineCap="BUTT" strokeLineJoin="ROUND" width="153.0">
          <effect>
-            <DropShadow height="9.77" radius="3.1925" spread="0.07" width="5.0" />
+            <DropShadow height="6.7" radius="2.85" width="6.7">
+               <color>
+                  <Color red="0.7891358137130737" green="0.5481481552124023" blue="1.0" />
+               </color>
+            </DropShadow>
          </effect>
-      </Rectangle>
+      </TextField>
+
 
       <Button fx:id="btnRegister" layoutX="405.0" layoutY="477.0" mnemonicParsing="false" onAction="#onSignupClicked" prefHeight="34.0" prefWidth="147.0" style="-fx-background-color: #0071d9;" text="REGISTER" textFill="WHITE">
          <font>
@@ -80,22 +88,14 @@
       <Label fx:id="lblErrEmail" layoutX="75.0" layoutY="278.0" prefHeight="16.0" prefWidth="480.0" textFill="RED" />
       <Label fx:id="lblErrAlias" layoutX="77.0" layoutY="358.0" prefHeight="16.0" prefWidth="480.0" textFill="RED" />
       <Label fx:id="lblErrPassword" layoutX="77.0" layoutY="439.0" prefHeight="16.0" prefWidth="480.0" textFill="RED" />
-      <Rectangle arcHeight="22.0" arcWidth="22.0" fill="WHITE" height="44.0" layoutX="69.0" layoutY="399.0" stroke="#6c90ff" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="2.0" width="238.0">
-         <effect>
-            <DropShadow height="9.77" radius="3.1925" spread="0.07" width="5.0" />
-         </effect>
-      </Rectangle>
-      <PasswordField fx:id="txtPassword" layoutX="85.0" layoutY="400.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="206.0" promptText="Password" style="-fx-background-color: -fx-control-inner-background;">
+
+      <PasswordField fx:id="txtPassword" layoutX="85.0" layoutY="400.0" onKeyPressed="#onKeyPressed" prefHeight="42.0" prefWidth="206.0" promptText="Password" style="-fx-border-color: #7e99fa;">
          <font>
             <Font size="15.0" />
          </font>
       </PasswordField>
-      <Rectangle arcHeight="22.0" arcWidth="22.0" fill="WHITE" height="44.0" layoutX="316.0" layoutY="398.0" stroke="#6c90ff" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="2.0" width="238.0">
-         <effect>
-            <DropShadow height="9.77" radius="3.1925" spread="0.07" width="5.0" />
-         </effect>
-      </Rectangle>
-      <PasswordField fx:id="txtConfirmPassword" layoutX="331.0" layoutY="399.0" onKeyPressed="#onKeyPressed" prefHeight="41.0" prefWidth="206.0" promptText="Confirm password" style="-fx-background-color: -fx-control-inner-background;">
+
+      <PasswordField fx:id="txtConfirmPassword" layoutX="331.0" layoutY="399.0" onKeyPressed="#onKeyPressed" prefHeight="41.0" prefWidth="206.0" promptText="Confirm password" style="-fx-border-color: #7e99fa;">
          <font>
             <Font size="15.0" />
          </font>
